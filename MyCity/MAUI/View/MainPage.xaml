@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MAUI.View"
+             x:Class="MAUI.View.MainPage"
+             xmlns:viewmodel="clr-namespace:MAUI.ViewModel"
+             x:DataType="viewmodel:MainPageViewModel"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <maps:Map Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Grid.ColumnSpan="3"
+                  x:Name="mappy" IsShowingUser="True"
+                  IsZoomEnabled="True" IsScrollEnabled="True"
+                  MapClicked="MapClickedAsync"
+                  android:SwipeView.SwipeTransitionMode="Drag">
+
+            <maps:Map.GestureRecognizers>
+                <DragGestureRecognizer DragStartingCommand="{Binding MapDraggedCommand}"/>
+                <SwipeGestureRecognizer Command="{Binding MapDraggedCommand}"/>
+                <TapGestureRecognizer Command="{Binding MapDraggedCommand}"
+                                      NumberOfTapsRequired="2"/>
+                <ClickGestureRecognizer Command="{Binding MapDraggedCommand}"/>
+            </maps:Map.GestureRecognizers>
+        </maps:Map>
+
+        <HorizontalStackLayout
+                HorizontalOptions="CenterAndExpand"
+                Grid.Row="1"
+                Background="Transparent"
+                VerticalOptions="CenterAndExpand"
+                Spacing="20"
+                Margin="2">
+
+            <Button Text="{Binding EventTypeSelectedString}"
+                    Command="{Binding FilterByTypeCommand}"
+                    CornerRadius="10"
+                    BackgroundColor="#BB778899"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    WidthRequest="130">
+
+            </Button>
+            <Button Text="Button 2"
+                    CornerRadius="10"
+                    BackgroundColor="#BB778899"
+                    TextColor="Black"
+                    FontAttributes="Bold">
+
+            </Button>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

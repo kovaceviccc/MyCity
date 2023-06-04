@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:MAUI.View"
+    xmlns:viewmodel ="clr-namespace:MAUI.ViewModel"
+    x:DataType="viewmodel:AppShellViewModel"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutIcon="menu.svg"
+    BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray900}}"
+    FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+    Appearing="OnAppearingAsync">
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Styles\Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <FlyoutItem Title="Event map" Icon="map2.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:MainPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Event list" Icon="location_dot_solid.svg">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:EventDisplayPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Account" FlyoutItemIsVisible="False" Icon="account1.svg">
+        <Tab>
+            <ShellContent Title="Account" ContentTemplate="{DataTemplate view:AccountPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings" Icon="settings.svg">
+        <Tab>
+            <ShellContent Title="Settings" ContentTemplate="{DataTemplate view:SettingsPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Login" Icon="login1.svg">
+        <Tab>
+            <ShellContent Title="Login" ContentTemplate="{DataTemplate view:LoginPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+</Shell>

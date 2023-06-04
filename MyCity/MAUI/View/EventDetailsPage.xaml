@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:MAUI.ViewModel"
+             xmlns:converter="clr-namespace:MAUI.Helpers"
+             x:Class="MAUI.View.EventDetailsPage"
+             x:DataType="viewmodel:EventDetailsPageViewModel"
+             xmlns:model="clr-namespace:MAUI.Models"
+             Title="{Binding EventDisplayModel.EventTitle}"
+             BackgroundColor="#395e60">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="200,auto,*"
+          Padding="0"
+          Margin="0"
+          BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+
+        <Frame BorderColor="Transparent"
+               
+               CornerRadius="0"
+               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+               Padding="5"
+               Grid.Row="0"
+               Margin="0">
+
+            <Grid RowDefinitions="80,*"
+                  RowSpacing="5">
+                <Grid Grid.Row="0"
+                      ColumnDefinitions="*,*,*">
+                    <Frame Grid.Column="0"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                           BorderColor="Transparent">
+                        <Label Text="{Binding FormattedDateCreated}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="15"
+                               FontAttributes="Bold"/>
+                    </Frame>
+                    <Frame Grid.Column="1"
+                           CornerRadius="60"
+                           BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                           BorderColor="Transparent">
+                        <Image Source="{Binding EventDisplayModel.IconSource}"
+                               HeightRequest="60"
+                               WidthRequest="60"/>
+                    </Frame>
+                    <Frame Grid.Column="2"
+                           BackgroundColor="Transparent"
+                           BorderColor="Transparent"
+                           Padding="10">
+                        <Grid ColumnDefinitions="auto,auto"
+                              ColumnSpacing="5"
+                              HorizontalOptions="Center">
+                            <ImageButton Grid.Column="0"
+                                         Source="{Binding LikeButtonImageSource}"
+                                         Command="{Binding LikeCommand}"
+                                         HorizontalOptions="CenterAndExpand"
+                                         WidthRequest="30"
+                                         HeightRequest="30">
+                            </ImageButton>
+                            <Label Text="{Binding EventDisplayModel.Likes.Count}"
+                                   Grid.Column="1"
+                                   FontSize="20"
+                                   MaxLines="1"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="EndAndExpand"
+                                   FontAttributes="Bold">
+                            </Label>
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <Frame Grid.Row="1"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray900}}"
+                       BorderColor="Transparent"
+                       Padding="0">
+
+                    <Grid ColumnDefinitions="40,*,auto"
+                              RowDefinitions="40,*"
+                              ColumnSpacing="8"
+                              RowSpacing="0"
+                              Padding="2"
+                              Margin="2">
+
+                        <Frame BorderColor="Transparent"
+                                   CornerRadius="40"
+                                   Grid.Row="0"
+                                   Grid.Column="0">
+                                
+                            <Image Source="user.svg"
+                                       WidthRequest="35"
+                                       HeightRequest="35"
+                                       Background="White"/>
+                        </Frame>
+
+                        <Label Text="{Binding EventDisplayModel.PublisherUserName}"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="StartAndExpand"/>
+
+                        <Label Text="{Binding FormattedDateCreated}"
+                                   Grid.Row="0"
+                                   Grid.Column="2"
+                                   HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding EventDisplayModel.EventDescription}"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="2"
+                               FontAttributes="Bold"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </Frame>
+
+        <Line BackgroundColor="Transparent" 
+              Grid.Row="1"
+              StrokeThickness="0.4"/>
+        
+        <Frame Padding="0"
+               Grid.Row="2"
+               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+               BorderColor="Transparent">
+
+            <Grid RowDefinitions="*,auto">
+                <RefreshView RefreshColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}"
+                             Grid.Row="0"
+                             Command="{Binding GetAllCommentsCommand}"
+                             IsRefreshing="{Binding GetAllCommentsCommand.IsRunning}">
+                    
+                    <CollectionView ItemsSource="{Binding Comments}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:CommentDisplayModel">
+                                <Frame BorderColor="Transparent"
+                                       Padding="2"
+                                       Margin="5"
+                                       Background="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}">
+
+                                    <Grid ColumnDefinitions="40,*,*"
+                                          RowDefinitions="40,auto"
+                                          ColumnSpacing="8"
+                                          RowSpacing="0"
+                                          Padding="2"
+                                          Margin="2">
+
+                                        <Frame BorderColor="Transparent"
+                                               CornerRadius="40"
+                                               Grid.Row="0"
+                                               Grid.Column="0">
+                                            <Image Source="user.svg"
+                                               WidthRequest="35"
+                                               HeightRequest="35"
+                                               Background="White"/>
+                                        </Frame>
+
+                                        <Label Text="{Binding PublisherUserName}"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               HorizontalOptions="StartAndExpand"
+                                               VerticalOptions="StartAndExpand"
+                                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+
+                                        <Label Text="{Binding DateCreatedString}"
+                                               Grid.Row="0"
+                                               Grid.Column="2"
+                                               HorizontalOptions="EndAndExpand"
+                                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+
+                                        <Label Text="{Binding Content}"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+
+                <Frame Grid.Row="1"
+                       BackgroundColor="Transparent"
+                       BorderColor="Transparent"
+                       Padding="0"
+                       Margin="5,0,0,0">
+
+                    <Grid ColumnDefinitions="*, auto">
+
+                        <Entry x:Name="entry"
+                               Grid.Column="0"
+                               VerticalOptions="EndAndExpand"
+                               Placeholder="Add comment"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="Gray"
+                               Text="{Binding Comment}"
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+
+                        <Button Grid.Column="1"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray300}}"
+                                Text="post"
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                Command="{Binding AddCommentCommand}"
+                                CommandParameter="{Binding .}"/>
+
+
+                    </Grid>
+                </Frame>
+                
+                
+                
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

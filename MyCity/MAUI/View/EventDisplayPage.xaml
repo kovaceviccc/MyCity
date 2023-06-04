@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MAUI.ViewModel"
+             xmlns:converter="clr-namespace:MAUI.Helpers"
+             xmlns:model="clr-namespace:MAUI.Models"
+             x:DataType="viewmodel:EventDisplayViewModel"
+             x:Class="MAUI.View.EventDisplayPage"
+             NavigationPage.TitleIconImageSource="earthquake.svg">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="REFRESH" Command="{Binding GetEventsCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid ColumnSpacing="5"
+          RowDefinitions="*,60"
+          RowSpacing="0">
+
+        <RefreshView Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Command="{Binding GetEventsCommand}"
+                     IsRefreshing="{Binding GetEventsCommand.IsRunning}"
+                     RefreshColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}">
+
+            <CollectionView BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}"
+                        ItemsSource="{Binding EventsToDisplay}"
+                        SelectionMode="Single"
+                        IsVisible="{Binding GetEventsCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}">
+
+                <!--<CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="200"
+                                 HeightRequest="200">
+                        --><!--<Image Source="earthquake.svg"/>--><!--
+                    </StackLayout>
+                </CollectionView.EmptyView>-->
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EventDisplayModel">
+                        <Grid Padding="5">
+                            <Frame HeightRequest="110" 
+                               CornerRadius="15"
+                               Padding="2"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+                               BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventDisplayViewModel}},Path=MoveToDetailsPageCommand}"/>
+                                </Frame.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="125,*" Padding="4,4,4,4">
+                                    <Image Aspect="AspectFit"
+                                       Source="{Binding IconSource}"/>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                     VerticalOptions="Start">
+                                        <Grid RowDefinitions="auto, *" Padding="0" Margin="0">
+                                            <Label Text="{Binding EventTitle}"
+                                               Grid.Row="0"
+                                               HorizontalTextAlignment="Center"
+                                               FontAttributes="Bold"
+                                               FontAutoScalingEnabled="True"
+                                                   TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                               FontSize="18"/>
+                                            <Frame Grid.Row="1"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand"
+                                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray600}}"
+                                               CornerRadius="5"
+                                               BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray950}}"
+                                               Padding="2,1,2,10">
+                                                <Grid RowDefinitions="*,*">
+                                                    <Label Text="{Binding EventDescription}"
+                                                       Grid.Row="0"
+                                                       Grid.RowSpan="2"
+                                                       FontAttributes="Bold"
+                                                       FontSize="15"
+                                                       TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"/>
+                                                </Grid>
+                                            </Frame>
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Button Text="{Binding FilterOptionSelectedString}"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                FontSize="20"
+                FontAttributes="Bold"
+                Padding="0"
+                Grid.Row="1"
+                Margin="8"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                FontFamily="Freedom"
+                Command="{Binding FilterCommand}">
+
+        </Button>
+    </Grid>
+</ContentPage>

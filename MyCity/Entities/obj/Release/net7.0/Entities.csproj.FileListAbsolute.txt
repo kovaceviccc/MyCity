@@ -1,0 +1,14 @@
+C:\ProjekatSW\repo\MyCity\Entities\bin\Release\net7.0\Entities.deps.json
+C:\ProjekatSW\repo\MyCity\Entities\bin\Release\net7.0\Entities.runtimeconfig.json
+C:\ProjekatSW\repo\MyCity\Entities\bin\Release\net7.0\Entities.dll
+C:\ProjekatSW\repo\MyCity\Entities\bin\Release\net7.0\Entities.pdb
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.csproj.AssemblyReference.cache
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.AssemblyInfoInputs.cache
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.AssemblyInfo.cs
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.csproj.CoreCompileInputs.cache
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.dll
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\refint\Entities.dll
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.pdb
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\Entities.genruntimeconfig.cache
+C:\ProjekatSW\repo\MyCity\Entities\obj\Release\net7.0\ref\Entities.dll

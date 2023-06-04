@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MAUI.ViewModel"
+             xmlns:converter="clr-namespace:MAUI.Helpers"
+             x:DataType="viewmodel:EventPageViewModel"
+             x:Class="MAUI.View.EventPage"
+             Title="EventPage"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom">
+    
+    
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
+
+    <VerticalStackLayout VerticalOptions="Center"
+                         Margin="20,200,20,0"
+                         Spacing="15">
+
+        <Entry Text="{Binding EventTitle}"
+               Placeholder="Event title"/>
+        <Label FontSize="Micro" FontAttributes="Bold" TextColor="Red" Text="{Binding EventTitleLabel}"/>
+
+
+        <Entry Text="{Binding EventDescription}"
+               Placeholder="Event description"/>
+        <Label FontSize="Micro" FontAttributes="Bold" TextColor="Red" Text="{Binding EventDecriptionLabel}"/>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
+                               Spacing="15">
+            <Picker ItemsSource="{Binding EventTypes}"
+                    SelectedItem="{Binding SelectedType}"
+                    SelectedIndex="-1"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    SelectedIndexChanged="SelectedEventChanged"
+                    Title="Select event type">
+                
+            </Picker>
+
+            <Picker ItemsSource="{Binding RadiusValues}"
+                    SelectedItem="{Binding SelectedRadius}"
+                    IsVisible="{Binding IsRadiusPickerVisible}"
+                    Title="Chose a radius"
+                    android:ListView.IsFastScrollEnabled="True"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center">
+            </Picker>
+            
+        </HorizontalStackLayout>
+        
+        <Button Text="Create event"
+                Command="{Binding AddEventCommand}"
+                IsEnabled="{Binding AddEventCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
+        
+        <ActivityIndicator IsRunning="{Binding AddEventCommand.IsRunning}"
+                           IsVisible="{Binding AddEventCommand.IsRunning}"/>
+
+
+
+    </VerticalStackLayout>
+    
+    
+</ContentPage>

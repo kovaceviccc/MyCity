@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.View.LoginPage"
+             xmlns:viewmodel="clr-namespace:MAUI.ViewModel"
+             xmlns:converter="clr-namespace:MAUI.Helpers"
+             x:DataType="viewmodel:LoginPageViewModel"
+             NavigatedTo="ContentPage_NavigatedTo"
+             NavigatedFrom="ContentPage_NavigatedFrom">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
+    <VerticalStackLayout VerticalOptions="Center"
+                         Margin="20,200,20,0"
+                         Spacing="15">
+        <Frame Margin="10"
+               BorderColor="White"
+               CornerRadius="50"
+               HeightRequest="120">
+            <Image Source="https://www.findool.com/images/avatars/avatar.png"/>
+        </Frame>
+        
+        
+        
+        
+        <Label Text="Login to your account"
+               TextColor="#3b5fe2"
+               FontSize="Large"
+               HorizontalOptions="Center"/>
+        <Label Text="Please enter your username and password."
+               TextColor="LightSlateGray"
+               FontSize="Small"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               Padding="0, 40, 0, 20"/>
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding UserName}"
+                   Placeholder="username"/>
+            <Label FontSize="Micro" FontAttributes="Bold" TextColor="Red" Text="{Binding UserNameLabel}"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding Password}"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   />
+            <Label FontSize="Micro" 
+                   TextColor="Red" 
+                   FontAttributes="Bold" Text="{Binding PasswordLabel}"/>
+        </VerticalStackLayout>
+
+
+        <Button Text="Login" 
+                Command="{Binding LoginCommand}" 
+                IsEnabled="{Binding LoginCommand.IsRunning, Converter= {StaticResource InverseBooleanConverter}}"/>
+        <ActivityIndicator IsRunning="{Binding LoginCommand.IsRunning}" 
+                           IsVisible="{Binding LoginCommand.IsRunning}"/>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,0,0,0" Padding="0">
+            <Label Text="New user?" TextColor="DarkGray" FontSize="Small"/>
+            <Label Text="Sign up"  TextColor="#1D8348" FontAttributes="Bold" FontSize="Small">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SignUp_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </VerticalStackLayout>
+
+</ContentPage>

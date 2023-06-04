@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="MAUI.View.RegisterPage"
+             xmlns:viewmodel="clr-namespace:MAUI.ViewModel"
+             xmlns:converter="clr-namespace:MAUI.Helpers"
+             x:DataType="viewmodel:RegisterPageViewModel"
+             Title="Register page">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+    
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Label Text="Register Page" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    
+    <VerticalStackLayout VerticalOptions="Center"
+                         Margin="20,0,20,0"
+                         Spacing="10">
+        <!--<Image Source="dotnet_bot"
+               HorizontalOptions="Center"
+               HeightRequest="40"
+               WidthRequest="40"/>-->
+        <Label Text="Create a new account"
+               TextColor="#101010"
+               FontSize="Large"
+               HorizontalOptions="Center"/>
+        <Label Text="Please enter your information bellow to create a new account."
+               TextColor="LightSlateGray"
+               FontSize="Small"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Center"
+               Padding="0, 40, 0, 20"/>
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding FirstName}"
+                   Placeholder="Fist name"/>
+            <Label FontSize="Micro" FontAttributes="Bold" TextColor="Red" Text="{Binding FistNameLabel}"/>
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding LastName}"
+                   Placeholder="Last name"/>
+            <Label FontSize="Micro" FontAttributes="Bold" TextColor="Red" Text="{Binding LastNameLabel}"/>
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding NickName}"
+                   Placeholder="nickname">
+            </Entry>
+            <Label FontSize="Micro" TextColor="Red" FontAttributes="Bold" Text="{Binding NickNameLabel}"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding Email}"
+               Placeholder="Email"/>
+            <Label FontSize="Micro" TextColor="Red" FontAttributes="Bold" Text="{Binding EmailLabel}"/>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Entry Text="{Binding Password}"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   />
+            <Label FontSize="Micro" TextColor="Red" FontAttributes="Bold" Text="{Binding PasswordLabel}"/>
+        </VerticalStackLayout>
+
+        <Frame CornerRadius="15"
+               Margin="0"
+               Padding="5">
+            <HorizontalStackLayout VerticalOptions="Start"
+                                   Margin="0"
+                                   HorizontalOptions="Center"
+                                   Spacing="50">
+
+                <VerticalStackLayout HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Margin="0">
+
+                    <Label Text="Date of Birth"
+                           FontSize="Subtitle"
+                           FontAttributes="Bold"/>
+
+                    <DatePicker HorizontalOptions="Center"
+                                BindingContext="{Binding DateOfBirth}"/>
+
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+
+
+        </Frame>
+
+        <Button Text="Register" Clicked="RegisterButton_Clicked" IsEnabled="{Binding RegisterCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
+        <ActivityIndicator IsEnabled="{Binding RegisterCommand.IsRunning}" IsRunning="{Binding RegisterCommand.IsRunning}"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>
