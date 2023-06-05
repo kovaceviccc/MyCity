@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
+             x:Class="DesktopUI.View.RegisterPage"
+             x:DataType="viewmodel:RegisterPageViewModel"
+             NavigationPage.HasBackButton="True"
+             FlyoutItem.IsVisible="False">
+    
+    <Grid ColumnDefinitions="*,*,*">
+
+        <Grid Grid.Column="1"
+              RowDefinitions="*,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,*"
+              RowSpacing="5">
+
+            <Label Grid.Row="0"
+                   VerticalOptions="EndAndExpand"
+                   Text="Register"
+                   HorizontalOptions="Center"
+                   FontSize="Title"/>
+
+            <Frame Grid.Row="1"
+                   Padding="0"
+                   BorderColor="Transparent">
+
+                <Entry Placeholder="First name"
+                           FontAutoScalingEnabled="True"
+                           FontSize="Subtitle"
+                           MinimumWidthRequest="400"
+                           MaximumHeightRequest="50">
+
+                </Entry>
+            </Frame>
+
+            <Label Grid.Row="2"
+                   Text="{Binding FistNameLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="3"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Last name"
+                       FontAutoScalingEnabled="True"
+                       FontSize="Subtitle"
+                       MinimumWidthRequest="400"
+                       MaximumHeightRequest="50">
+                </Entry>
+            </Frame>
+
+            <Label Grid.Row="4"
+                   Text="{Binding LastNameLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="5"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Email"
+                       FontAutoScalingEnabled="True"
+                       FontSize="Subtitle"
+                       MinimumWidthRequest="400"
+                       MaximumHeightRequest="50">
+                </Entry>
+            </Frame>
+
+            <Label Grid.Row="6"
+                   Text="{Binding EmailLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="7"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Password"
+                       FontAutoScalingEnabled="True"
+                       FontSize="Subtitle"
+                       MinimumWidthRequest="400"
+                       MaximumHeightRequest="50"
+                       IsPassword="True">
+                </Entry>
+            </Frame>
+
+            <Label Grid.Row="8"
+                   Text="{Binding PasswordLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="9"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   Padding="0">
+
+                <DatePicker HorizontalOptions="CenterAndExpand"
+                            Date="{Binding DateOfBirth}"/>
+
+
+            </Frame>
+
+            <Label Grid.Row="10"/>
+
+            <Frame Grid.Row="11"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   Padding="0">
+
+                <Button Text="Register"/>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

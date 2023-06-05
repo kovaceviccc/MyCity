@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopUI", "DesktopUI\DesktopUI.csproj", "{EF350030-E82C-496A-B88A-2A60235746AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,12 @@ Global
 		{6BCC1B4B-446F-42FA-8747-39A0E9EDE2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BCC1B4B-446F-42FA-8747-39A0E9EDE2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BCC1B4B-446F-42FA-8747-39A0E9EDE2A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF350030-E82C-496A-B88A-2A60235746AA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{86886975-7577-40D0-A62F-3B4CB1E5B66A} = {A0E70265-CF8F-4FA8-9EA9-D7F31E482EAD}
 		{32062087-F633-498E-A055-1524DD327BC1} = {A0E70265-CF8F-4FA8-9EA9-D7F31E482EAD}
 		{6BCC1B4B-446F-42FA-8747-39A0E9EDE2A4} = {41D0A6CE-737D-45B6-A07A-5351BB743D59}
+		{EF350030-E82C-496A-B88A-2A60235746AA} = {A0E70265-CF8F-4FA8-9EA9-D7F31E482EAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B1BCFCC-D66E-421D-8DF9-675882DC18BC}

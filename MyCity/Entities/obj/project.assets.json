@@ -4554,23 +4554,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sreten\\.nuget\\packages\\": {},
+    "C:\\Users\\Petar\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sreten\\Desktop\\New folder\\za revert\\MyCity\\MyCity\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\ProjekatSW\\MyCity-GitHub\\MyCity\\MyCity\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\Sreten\\Desktop\\New folder\\za revert\\MyCity\\MyCity\\Entities\\Entities.csproj",
-      "packagesPath": "C:\\Users\\Sreten\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sreten\\Desktop\\New folder\\za revert\\MyCity\\MyCity\\Entities\\obj\\",
+      "projectPath": "C:\\ProjekatSW\\MyCity-GitHub\\MyCity\\MyCity\\Entities\\Entities.csproj",
+      "packagesPath": "C:\\Users\\Petar\\.nuget\\packages\\",
+      "outputPath": "C:\\ProjekatSW\\MyCity-GitHub\\MyCity\\MyCity\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Sreten\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Petar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4651,7 +4651,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

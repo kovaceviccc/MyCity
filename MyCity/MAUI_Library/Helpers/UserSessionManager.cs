@@ -9,10 +9,14 @@ public static class UserSessionManager
 {
 
     public static ShellItem _logOfButton;
+    public static ShellItem LoginPage { get; set; }
+    public static ShellItem RegisterPage { get; set; }
     public static IEventHub _eventHub;
 
     public static async Task LogofAsync()
     {
+
+#if ANDROID
         var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
         loginPage.FlyoutItemIsVisible= true;
         
@@ -21,6 +25,7 @@ public static class UserSessionManager
 
         Shell.Current.FlyoutIsPresented= false;
 
+#endif
         if(_logOfButton is not null)
         {
             Shell.Current.Items.Remove(_logOfButton);
@@ -47,6 +52,7 @@ public static class UserSessionManager
 
     public static async Task LoginAsync()
     {
+#if ANDROID
         if (_logOfButton is not null)
         {
             Shell.Current.Items.Add(_logOfButton);
@@ -56,7 +62,7 @@ public static class UserSessionManager
 
         var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
         loginPage.FlyoutItemIsVisible = false;
-
+#endif
         await ReconnectAsync();
     }
 
@@ -153,7 +159,6 @@ public static class UserSessionManager
         {
             return true;
         }
-
         return false;
     }
 }

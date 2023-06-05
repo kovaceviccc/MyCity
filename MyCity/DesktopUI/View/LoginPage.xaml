@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DesktopUI.View.LoginPage"
+             xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
+             x:DataType="viewmodel:LoginPageViewModel">
+    
+    <Grid ColumnDefinitions="*,*,*">
+
+        <Grid Grid.Column="1"
+              RowDefinitions="*,auto,auto,auto,auto,*"
+              RowSpacing="20">
+            
+            <Label Grid.Row="0"
+                   VerticalOptions="EndAndExpand"
+                   Text="Login"
+                   HorizontalOptions="Center"
+                   FontSize="Title"/>
+
+            <Frame Grid.Row="1"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Email"
+                       Text="{Binding Email}"
+                       FontAutoScalingEnabled="True"
+                       FontSize="Subtitle"
+                       MinimumWidthRequest="400"
+                       MaximumHeightRequest="50">
+                    
+                </Entry>
+            </Frame>
+
+            <Frame Grid.Row="2"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Entry Placeholder="Password"
+                       Text="{Binding Password}"
+                       FontAutoScalingEnabled="True"
+                       FontSize="Subtitle"
+                       MinimumWidthRequest="400"
+                       MaximumHeightRequest="50"
+                       IsPassword="True">
+                </Entry>
+            </Frame>
+
+            <Frame Grid.Row="3"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   Padding="0">
+
+                <Button Text="Login"
+                        Command="{Binding LoginAsyncCommand}"/>
+            </Frame>
+
+            <Frame Grid.Row="4"
+                   BackgroundColor="Transparent"
+                   BorderColor="Transparent"
+                   Padding="0">
+                
+                <Grid MinimumWidthRequest="400"
+                      ColumnDefinitions="*,*"
+                      RowDefinitions="auto,*">
+                    <Label Grid.Column="0"
+                           Text="Don't have an account yet?"
+                           HorizontalTextAlignment="End"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"/>
+
+                    <Button Grid.Column="1"
+                            BackgroundColor="Transparent"
+                            BorderColor="Transparent"
+                            HorizontalOptions="Start" 
+                            Text="Click here to sign up!"
+                            Margin="0"
+                            Padding="0"
+                            TextColor="Blue"
+                            Command="{Binding GoToRegisterPageCommand}"/>
+                </Grid>
+            </Frame>
+        </Grid>
+        
+    </Grid>
+</ContentPage>

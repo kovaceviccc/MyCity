@@ -26,16 +26,17 @@ public class ApiHelper : IApiHelper
 
     private void Initialize()
     {
+        string api;
 
-#if DEBUG
+#if DEBUG && ANDROID
         HttpsClientHandlerService handler = new HttpsClientHandlerService();
         _apiClient = new HttpClient(handler.GetPlatformMessageHandler());
+        api = "https://10.0.2.2:7266/";
 #else
-            client = new HttpClient();
+        _apiClient = new HttpClient();
+        api = "https://localhost:7266/";
 #endif
 
-
-        string api = "https://10.0.2.2:7266/";
         _apiClient.BaseAddress = new Uri(api);
         _apiClient.DefaultRequestHeaders.Accept.Clear();
         _apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

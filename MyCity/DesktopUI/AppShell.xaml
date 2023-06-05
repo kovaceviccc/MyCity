@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="DesktopUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DesktopUI"
+    xmlns:viewmodel ="clr-namespace:DesktopUI.ViewModel"
+    x:DataType="viewmodel:AppShellViewModel"
+    xmlns:view="clr-namespace:DesktopUI.View"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarHasShadow="True"
+    Shell.PresentationMode="Modal"
+    Shell.FlyoutWidth="200">
+
+    <!--<FlyoutItem Title="Login">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:RegisterPage}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Register">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate view:LoginPage}"/>
+        </Tab>
+    </FlyoutItem>-->
+</Shell>

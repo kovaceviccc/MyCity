@@ -1,0 +1,1 @@
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\DesktopUI.csproj;x64

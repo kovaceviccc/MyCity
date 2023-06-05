@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DesktopUI</name>
+    </assembly>
+    <members>
+        <member name="T:DesktopUI.ViewModel.LoginPageViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.LoginPageViewModel.Email">
+            <inheritdoc cref="F:DesktopUI.ViewModel.LoginPageViewModel.email"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.LoginPageViewModel.Password">
+            <inheritdoc cref="F:DesktopUI.ViewModel.LoginPageViewModel.password"/>
+        </member>
+        <member name="F:DesktopUI.ViewModel.LoginPageViewModel.loginAsyncCommand">
+            <summary>The backing field for <see cref="P:DesktopUI.ViewModel.LoginPageViewModel.LoginAsyncCommand"/>.</summary>
+        </member>
+        <member name="P:DesktopUI.ViewModel.LoginPageViewModel.LoginAsyncCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:DesktopUI.ViewModel.LoginPageViewModel.LoginAsync"/>.</summary>
+        </member>
+        <member name="F:DesktopUI.ViewModel.LoginPageViewModel.goToRegisterPageCommand">
+            <summary>The backing field for <see cref="P:DesktopUI.ViewModel.LoginPageViewModel.GoToRegisterPageCommand"/>.</summary>
+        </member>
+        <member name="P:DesktopUI.ViewModel.LoginPageViewModel.GoToRegisterPageCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:DesktopUI.ViewModel.LoginPageViewModel.GoToRegisterPage"/>.</summary>
+        </member>
+        <member name="T:DesktopUI.ViewModel.RegisterPageViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.FirstName">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.firstName"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.LastName">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.lastName"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.NickName">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.nickName"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.Email">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.email"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.Password">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.password"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.FistNameLabel">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.fistNameLabel"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.LastNameLabel">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.lastNameLabel"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.NickNameLabel">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.nickNameLabel"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.EmailLabel">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.emailLabel"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.PasswordLabel">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.passwordLabel"/>
+        </member>
+        <member name="P:DesktopUI.ViewModel.RegisterPageViewModel.DateOfBirth">
+            <inheritdoc cref="F:DesktopUI.ViewModel.RegisterPageViewModel.dateOfBirth"/>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Email">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Email" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Password">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Password" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FirstName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FirstName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LastName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LastName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NickName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NickName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FistNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FistNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LastNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LastNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NickNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NickNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.EmailLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "EmailLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PasswordLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PasswordLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DateOfBirth">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DateOfBirth" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Email">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Email" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Password">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Password" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FirstName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FirstName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LastName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LastName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NickName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NickName" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FistNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FistNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LastNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LastNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NickNameLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NickNameLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.EmailLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "EmailLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PasswordLabel">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PasswordLabel" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DateOfBirth">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DateOfBirth" generated properties.</summary>
+        </member>
+    </members>
+</doc>

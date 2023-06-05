@@ -17,14 +17,23 @@ public class EventHub : IEventHub
         _apiHelper = apiHelper;
         try
         {
+            string url;
+
+#if ANDROID
+            url = "https://10.0.2.2:7266/hubs/event";
+#else
+            url = "https://localhost:7266/hubs/event";
+
+#endif
 
             _connection = new HubConnectionBuilder()
-                .WithUrl("https://10.0.2.2:7266/hubs/event", options =>
+                .WithUrl(url, options =>
                 {
                     //options.SkipNegotiation = true;
                     //options.Transports = HttpTransportType.WebSockets;
-
+#if ANDROID
                     options.HttpMessageHandlerFactory = _ => new HttpsClientHandlerService().GetPlatformMessageHandler();
+#endif
 
                     options.AccessTokenProvider = async () =>
                     {
