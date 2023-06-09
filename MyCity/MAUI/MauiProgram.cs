@@ -83,6 +83,7 @@ namespace MAUI
             builder.Services.AddSingleton<IAuthEndpoint, AuthEndpoint>();
 
 
+
             //SignalR servisi(hubovi)
             builder.Services.AddSingleton<IEventHub, EventHub>();
             

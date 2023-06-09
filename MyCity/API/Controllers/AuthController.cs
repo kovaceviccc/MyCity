@@ -74,21 +74,21 @@ public class AuthController : ControllerBase
         });
     }
 
-    [HttpPost]
-    [Route("AddRoles")]
-    public async Task<IActionResult> AddRoles(string id)
-    {
+    //[HttpPost]
+    //[Route("AddRoles")]
+    //public async Task<IActionResult> AddRoles(string id)
+    //{
 
-        await _authRepository.CreateRole(RolesEnum.User.ToString());
-        await _authRepository.CreateRole(RolesEnum.Admin.ToString());
-        await _authRepository.CreateRole(RolesEnum.AuthorizedPersonel.ToString());
+    //    await _authRepository.CreateRole(RolesEnum.User.ToString());
+    //    await _authRepository.CreateRole(RolesEnum.Admin.ToString());
+    //    await _authRepository.CreateRole(RolesEnum.AuthorizedPersonel.ToString());
 
-        var res = await _userRepository.AddToRoles(id);
+    //    var res = await _userRepository.AddToRoles(id);
 
-        if (!res) return StatusCode(StatusCodes.Status400BadRequest, "Failed");
+    //    if (!res) return StatusCode(StatusCodes.Status400BadRequest, "Failed");
 
-        return StatusCode(StatusCodes.Status201Created, "Success");
-    }
+    //    return StatusCode(StatusCodes.Status201Created, "Success");
+    //}
 
     [HttpPost]
     [Route("CreateRole")]
@@ -189,9 +189,9 @@ public class AuthController : ControllerBase
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "User")]
     public async Task<IActionResult> GetUserInfo()
     {
-        string userId = HttpContext.User.Claims.FirstOrDefault(c=> c.Type == ClaimTypes.NameIdentifier)?.Value!;
+        string userEmail = HttpContext.User.Claims.FirstOrDefault(c=> c.Type == ClaimTypes.NameIdentifier)?.Value!;
 
-        var user = await _authRepository.FindByEmailAsync(userId);
+        var user = await _authRepository.FindByEmailAsync(userEmail);
 
         if(user is null)
         {
@@ -205,7 +205,6 @@ public class AuthController : ControllerBase
             UserName = user.DisplayName,
             Email = user.Email!
         });
-
     }
 
     [HttpPost]
@@ -254,5 +253,71 @@ public class AuthController : ControllerBase
             Token = jwtToken,
             RefreshToken = refreshToken,
         });
+    }
+
+    [HttpGet]
+    [Route("Admin/Roles/GetAll")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> GetAllRoles()
+    {
+        try
+        {
+            var roles = await _authRepository.GetAllRoles();
+            return StatusCode(StatusCodes.Status200OK,roles);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+
+    [HttpGet]
+    [Route("Admin/Roles/GetAllRequired")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> GetAllRequiredRole()
+    {
+
+        try
+        {
+            string userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value!;
+
+            if (userId is null)
+            {
+                return StatusCode(StatusCodes.Status401Unauthorized);
+            }
+
+            var roles = await _authRepository.GetAllRequredRoles(userId);
+            return StatusCode(StatusCodes.Status200OK, roles);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return StatusCode(StatusCodes.Status500InternalServerError, error);
+        }
+    }
+
+    [HttpPost]
+    [Route("Admin/Roles/SubmitRoleRequest")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> SubmitRequest([FromBody]string roleId)
+    {
+        try
+        {
+            string userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value!;
+
+            (var res, string error) =await _authRepository.SubmitRoleRequest(roleId, userId);
+
+            if(!res) return StatusCode(StatusCodes.Status400BadRequest, error);
+
+            return StatusCode(StatusCodes.Status201Created, error);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            return StatusCode(StatusCodes.Status400BadRequest, error);
+        }
     }
 }

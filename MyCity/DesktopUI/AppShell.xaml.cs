@@ -1,6 +1,6 @@
-﻿using DesktopUI.View;
+﻿using DesktopUI.MenuItems;
+using DesktopUI.View;
 using DesktopUI.ViewModel;
-using MAUI_Library.API.Hubs;
 using MAUI_Library.API.Hubs.Interfaces;
 using MAUI_Library.Helpers;
 
@@ -8,30 +8,38 @@ namespace DesktopUI
 {
     public partial class AppShell : Shell
     {
-        private readonly LoginPage _loginPage;
-        private readonly RegisterPage _registerPage;
 
         public AppShell(AppShellViewModel vm,
-            LoginPage loginPage, RegisterPage registerPage, IEventHub eventHub)
+                        IServiceProvider serviceProvider)
         {
             InitializeComponent();
             BindingContext = vm;
-            _loginPage = loginPage;
-            _registerPage = registerPage;
 
-            UserSessionManager._eventHub = eventHub;
-        }
+            var eventHub = serviceProvider.GetService<IEventHub>();
+            var registerPage = serviceProvider.GetService<RegisterPage>();
+            var loginPage = serviceProvider.GetService<LoginPage>();
+            var adminMainPage = serviceProvider.GetService<AdminMainPage>();
+            var authorizedPersonelMainPage = serviceProvider.GetService<AuthorizedPersonelMainPage>();
+            var accountPage = serviceProvider.GetService<AccountPage>();
+            var logoutButton = serviceProvider.GetService<LogoutButton>();
+            var unauthorizedPage = serviceProvider.GetService<UnauthorizedPage>();
 
-        protected override async void OnAppearing()
-        {
-            await ((AppShellViewModel)BindingContext).OnAppearingAsync();
-            
-            var result = await UserSessionManager.CheckCredentialsAsync();
-            if (!result) 
-            {
-                Current.Items.Add(_loginPage);
-                Current.Items.Add(_registerPage);
-            }
+
+            if(eventHub is not null) UserSessionManager._eventHub = eventHub;
+
+            if(registerPage is not null) UserSessionManager.RegisterPage = registerPage;
+
+            if(loginPage is not null) UserSessionManager.LoginPage = loginPage;
+
+            if(adminMainPage is not null) UserSessionManager.AdminMainPage = adminMainPage;
+
+            if (accountPage is not null) UserSessionManager.AccountPage = accountPage;
+
+            if(authorizedPersonelMainPage is not null) UserSessionManager.AuthorizedPersonelMainPage = authorizedPersonelMainPage;
+
+            if(logoutButton is not null) UserSessionManager.LogOfButton = logoutButton;
+
+            if (unauthorizedPage is not null) UserSessionManager.UnauthorizedPage = unauthorizedPage;
         }
     }
 }

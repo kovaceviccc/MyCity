@@ -1,7 +1,7 @@
 ﻿using Entities.DbSet;
+using Entities.Models;
 using Entities.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Entities.Repository;
 
@@ -198,6 +198,28 @@ public class EventRepository : IEventRepository
         {
             string error = ex.Message;
             return Enumerable.Empty<Comment>();
+        }
+    }
+
+    public async Task<IEnumerable<BasicEventModel>> GetAllEventsAsync()
+    {
+        try
+        {
+            var events = await _context.Events.Where(x => x.Archived == false)
+                                              .Select(x=> new BasicEventModel
+                                              {
+                                                  Id = x.Id,
+                                                  EventType = x.EventType,
+                                                  Responded = true
+                                              })
+                                              .ToListAsync();
+            return events;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return Enumerable.Empty<BasicEventModel>();
         }
     }
 }

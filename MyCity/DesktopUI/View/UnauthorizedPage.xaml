@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel ="clr-namespace:DesktopUI.ViewModel"
+             x:Class="DesktopUI.View.UnauthorizedPage"
+             x:DataType="viewmodel:UnauthorizedPageViewModel"
+             Title="UnauthorizedPage">
+    
+    <Grid RowDefinitions="*,*,*,*,*,*,*"
+          ColumnDefinitions="*,*,*">
+          
+        <Label Grid.Row="2"
+               Grid.Column="1"
+            Text="Please submit a request for a role and wait for response!"
+            FontAttributes="Bold"
+            FontSize="Title"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            VerticalOptions="EndAndExpand" 
+            HorizontalOptions="EndAndExpand" />
+
+        <Picker 
+                Grid.Row="3"
+                Grid.Column="1"
+                Title="Select a role"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                ItemsSource="{Binding Roles}"
+                SelectedItem="{Binding SelectedRole}">
+            
+        </Picker>
+
+        <Button Grid.Row="4"
+                Grid.Column="1"
+                Text="Subbmint request for a role"
+                Command="{Binding SubmmitRequestCommand}"/>
+    </Grid>
+</ContentPage>

@@ -7,20 +7,28 @@
     xmlns:viewmodel ="clr-namespace:DesktopUI.ViewModel"
     x:DataType="viewmodel:AppShellViewModel"
     xmlns:view="clr-namespace:DesktopUI.View"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.NavBarHasShadow="True"
-    Shell.PresentationMode="Modal"
-    Shell.FlyoutWidth="200">
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutWidth="200"
+    Shell.NavBarIsVisible="False"
+    FlyoutFooter="Please help me"
+    FlyoutBackgroundColor="#11282c34">
+
+    <!--<FlyoutItem Title="Admin page">
+        <ShellContent ContentTemplate="{DataTemplate view:AdminMainPage}"/>
+    </FlyoutItem>-->
 
     <!--<FlyoutItem Title="Login">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate view:RegisterPage}"/>
-        </Tab>
+        
+        <ShellContent ContentTemplate="{DataTemplate view:LoginPage}"/>
+        
     </FlyoutItem>
 
     <FlyoutItem Title="Register">
-        <Tab>
-            <ShellContent ContentTemplate="{DataTemplate view:LoginPage}"/>
-        </Tab>
+        
+        <ShellContent ContentTemplate="{DataTemplate view:RegisterPage}"/>
+        
     </FlyoutItem>-->
+
+    <!--<ShellContent Title="Login" ContentTemplate="{DataTemplate view:LoginPage}"/>
+    <ShellContent Title="Register" ContentTemplate="{DataTemplate view:RegisterPage}"/>-->
 </Shell>

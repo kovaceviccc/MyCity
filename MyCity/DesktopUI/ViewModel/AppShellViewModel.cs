@@ -14,15 +14,6 @@ public partial class AppShellViewModel : ObservableObject
     private readonly RegisterPage _registerPage;
 
 
-
-
-    public async Task OnAppearingAsync()
-    {
-        //await Task.Delay(500);
-    }
-
-
-
     public AppShellViewModel(LoginPage loginPage,
                              RegisterPage registerPage)
     {

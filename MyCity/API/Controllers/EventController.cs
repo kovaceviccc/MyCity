@@ -95,4 +95,32 @@ public class EventController : ControllerBase
 
         return StatusCode(StatusCodes.Status200OK, result);
     }
+
+
+    [HttpGet]
+    [Route("Admin/GetAll/{timeSpanString}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles ="Admin")]
+    public async Task<IActionResult> GetAllEvents(string timeSpanString)
+    {
+        var success = TimeSpan.TryParse(timeSpanString, out TimeSpan timeSpan);
+
+        if (!success)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest);
+        }
+
+        try
+        {
+            var result = await _eventRepository.GetAllEventsAsync();
+
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error 
+
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
 }

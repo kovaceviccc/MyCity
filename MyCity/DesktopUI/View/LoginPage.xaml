@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DesktopUI.View.LoginPage"
              xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
-             x:DataType="viewmodel:LoginPageViewModel">
-    
+             xmlns:converter="clr-namespace:MAUI_Library.Helpers;assembly=MAUI_Library"
+             x:Class="DesktopUI.View.LoginPage"
+             x:DataType="viewmodel:LoginPageViewModel"
+             Title="Login">
+
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
     <Grid ColumnDefinitions="*,*,*">
 
         <Grid Grid.Column="1"
-              RowDefinitions="*,auto,auto,auto,auto,*"
-              RowSpacing="20">
+              RowDefinitions="*,auto,auto,auto,auto,auto,auto,*"
+              RowSpacing="5">
             
             <Label Grid.Row="0"
                    VerticalOptions="EndAndExpand"
@@ -25,12 +32,18 @@
                        FontAutoScalingEnabled="True"
                        FontSize="Subtitle"
                        MinimumWidthRequest="400"
-                       MaximumHeightRequest="50">
+                       MaximumHeightRequest="50"
+                       IsSpellCheckEnabled="False">
                     
                 </Entry>
             </Frame>
 
-            <Frame Grid.Row="2"
+            <Label Grid.Row="2"
+                   Text="{Binding EmailLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="3"
                    Padding="0"
                    BorderColor="Transparent">
                 <Entry Placeholder="Password"
@@ -43,28 +56,34 @@
                 </Entry>
             </Frame>
 
-            <Frame Grid.Row="3"
+            <Label Grid.Row="4"
+                   Text="{Binding PasswordLabel}"
+                   TextColor="PaleVioletRed"
+                   FontSize="13"/>
+
+            <Frame Grid.Row="5"
                    BackgroundColor="Transparent"
                    BorderColor="Transparent"
                    Padding="0">
 
                 <Button Text="Login"
-                        Command="{Binding LoginAsyncCommand}"/>
+                        Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding LoginCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
             </Frame>
 
-            <Frame Grid.Row="4"
+            <Frame Grid.Row="6"
                    BackgroundColor="Transparent"
                    BorderColor="Transparent"
                    Padding="0">
                 
                 <Grid MinimumWidthRequest="400"
-                      ColumnDefinitions="*,*"
-                      RowDefinitions="auto,*">
+                      ColumnDefinitions="*,*">
                     <Label Grid.Column="0"
                            Text="Don't have an account yet?"
                            HorizontalTextAlignment="End"
                            VerticalOptions="Center"
-                           VerticalTextAlignment="Center"/>
+                           VerticalTextAlignment="Center"
+                           IsVisible="{Binding LoginCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
 
                     <Button Grid.Column="1"
                             BackgroundColor="Transparent"
@@ -74,7 +93,17 @@
                             Margin="0"
                             Padding="0"
                             TextColor="Blue"
-                            Command="{Binding GoToRegisterPageCommand}"/>
+                            Command="{Binding GoToRegisterPageCommand}"
+                            IsEnabled="{Binding LoginCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"
+                            IsVisible="{Binding LoginCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
+                    <ActivityIndicator Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       IsVisible="{Binding LoginCommand.IsRunning}"
+                                       IsEnabled="{Binding LoginCommand.IsRunning}"
+                                       IsRunning="{Binding LoginCommand.IsRunning}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
                 </Grid>
             </Frame>
         </Grid>

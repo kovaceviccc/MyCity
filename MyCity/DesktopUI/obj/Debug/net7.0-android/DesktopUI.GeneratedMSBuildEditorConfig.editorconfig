@@ -38,6 +38,24 @@ build_metadata.AdditionalFiles.ManifestResourceName = DesktopUI.Resources.Styles
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
+[C:/ProjekatSW/MyCity-GitHub/MyCity/MyCity/DesktopUI/View/AccountPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = DesktopUI.View.AccountPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\AccountPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\AccountPage.xaml
+
+[C:/ProjekatSW/MyCity-GitHub/MyCity/MyCity/DesktopUI/View/AdminMainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = DesktopUI.View.AdminMainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\AdminMainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\AdminMainPage.xaml
+
+[C:/ProjekatSW/MyCity-GitHub/MyCity/MyCity/DesktopUI/View/AuthorizedPersonelMainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = DesktopUI.View.AuthorizedPersonelMainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = View\AuthorizedPersonelMainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = View\AuthorizedPersonelMainPage.xaml
+
 [C:/ProjekatSW/MyCity-GitHub/MyCity/MyCity/DesktopUI/View/LoginPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = DesktopUI.View.LoginPage.xaml

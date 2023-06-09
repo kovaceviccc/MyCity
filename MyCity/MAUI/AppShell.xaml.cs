@@ -19,7 +19,7 @@ public partial class AppShell : Shell
         BindingContext = vm;
         InitializeComponent();
         _logOfButton = button;
-        UserSessionManager._logOfButton = _logOfButton;
+        UserSessionManager.LogOfButton = _logOfButton;
         UserSessionManager._eventHub = eventHub;
 
         Routing.RegisterRoute(nameof(EventDetailsPage), typeof(EventDetailsPage));

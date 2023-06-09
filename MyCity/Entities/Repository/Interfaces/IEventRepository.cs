@@ -1,4 +1,5 @@
 ﻿using Entities.DbSet;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Entities.Repository.Interfaces;
 public interface IEventRepository
 {
     Task<IEnumerable<Event>> GetAllEventsAsync(TimeSpan timeSpan);
+    Task<IEnumerable<BasicEventModel>> GetAllEventsAsync();
     Task<bool> AddEvent(Event @event);
     Task<bool> RemoveEvent(string eventId);
     Task<bool> BlockEvent(string eventId); //Admin only

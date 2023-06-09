@@ -170,7 +170,11 @@ public partial class EventDetailsPageViewModel : ObservableObject
     {
         TimeSpan timeElapsed = DateTime.UtcNow - date;
 
-        if (timeElapsed.TotalSeconds < 60) // Less than a minute ago
+        if(timeElapsed.TotalSeconds < 0) // error handling
+        {
+            return "0 sec";
+        }
+        else if (timeElapsed.TotalSeconds < 60) // Less than a minute ago
         {
             return $"{(int)timeElapsed.TotalSeconds} sec";
         }

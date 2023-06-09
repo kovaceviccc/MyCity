@@ -910,6 +910,21 @@
     <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-100.png">
+      <PackagePath>danger.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-125.png">
+      <PackagePath>danger.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-150.png">
+      <PackagePath>danger.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-200.png">
+      <PackagePath>danger.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-400.png">
+      <PackagePath>danger.scale-400.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-100.png">
       <PackagePath>dotnet_bot.scale-100.png</PackagePath>
     </AppxPackagedFile>
@@ -924,6 +939,84 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\dotnet_bot.scale-400.png">
       <PackagePath>dotnet_bot.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\event.scale-100.png">
+      <PackagePath>event.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\event.scale-125.png">
+      <PackagePath>event.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\event.scale-150.png">
+      <PackagePath>event.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\event.scale-200.png">
+      <PackagePath>event.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\event.scale-400.png">
+      <PackagePath>event.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\flood.scale-100.png">
+      <PackagePath>flood.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\flood.scale-125.png">
+      <PackagePath>flood.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\flood.scale-150.png">
+      <PackagePath>flood.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\flood.scale-200.png">
+      <PackagePath>flood.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\flood.scale-400.png">
+      <PackagePath>flood.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-100.png">
+      <PackagePath>house_fire_solid.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-125.png">
+      <PackagePath>house_fire_solid.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-150.png">
+      <PackagePath>house_fire_solid.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-200.png">
+      <PackagePath>house_fire_solid.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-400.png">
+      <PackagePath>house_fire_solid.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-100.png">
+      <PackagePath>logout1.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-125.png">
+      <PackagePath>logout1.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-150.png">
+      <PackagePath>logout1.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-200.png">
+      <PackagePath>logout1.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-400.png">
+      <PackagePath>logout1.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\unauthorized.scale-100.jpg">
+      <PackagePath>unauthorized.scale-100.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-100.png">
+      <PackagePath>users.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-125.png">
+      <PackagePath>users.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-150.png">
+      <PackagePath>users.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-200.png">
+      <PackagePath>users.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-400.png">
+      <PackagePath>users.scale-400.png</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

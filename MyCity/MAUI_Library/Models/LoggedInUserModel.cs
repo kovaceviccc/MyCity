@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MAUI_Library.Models;
 
-namespace MAUI_Library.Models;
-
-public class LoggedInUserModel : ILoggedInUserModel
+public class LoggedInUserModel :ILoggedInUserModel
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

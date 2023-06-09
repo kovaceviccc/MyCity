@@ -7,63 +7,131 @@ namespace MAUI_Library.Helpers;
 
 public static class UserSessionManager
 {
-
-    public static ShellItem _logOfButton;
+    public static ShellItem LogOfButton { get; set; }
     public static ShellItem LoginPage { get; set; }
     public static ShellItem RegisterPage { get; set; }
+
+#if !ANDROID
+    public static ShellItem AdminMainPage { get; set; }
+    public static ShellItem AuthorizedPersonelMainPage { get; set; }
+    public static ShellItem UnauthorizedPage { get; set; }
+#endif
+
+    public static ShellItem AccountPage { get; set; }
+
     public static IEventHub _eventHub;
 
     public static async Task LogofAsync()
     {
 
-#if ANDROID
-        var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
-        loginPage.FlyoutItemIsVisible= true;
-        
-        var accountPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Account");
-        accountPage.FlyoutItemIsVisible= false;
+        if(LoginPage is not null) Shell.Current.Items.Add(LoginPage);
+        if(RegisterPage is not null) Shell.Current.Items.Add(RegisterPage);
+        Shell.Current.CurrentItem = LoginPage;
 
-        Shell.Current.FlyoutIsPresented= false;
-
+#if !ANDROID
+        if(AdminMainPage is not null) Shell.Current.Items.Remove(AdminMainPage);
+        if (AuthorizedPersonelMainPage is not null) Shell.Current.Items.Remove(AuthorizedPersonelMainPage);
 #endif
-        if(_logOfButton is not null)
-        {
-            Shell.Current.Items.Remove(_logOfButton);
-        }
+        if (LogOfButton is not null) Shell.Current.Items.Remove(LogOfButton);
+        if (AccountPage is not null) Shell.Current.Items.Remove(AccountPage);
 
         RemoveTokens();
 
+#if ANDROID
         await ReconnectAsync();
+#endif
+        //var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
+        //loginPage.FlyoutItemIsVisible= true;
+
+        //var accountPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Account");
+        //accountPage.FlyoutItemIsVisible= false;
+
+        //Shell.Current.FlyoutIsPresented= false;
+
+        //if(LogOfButton is not null)
+        //{
+        //    Shell.Current.Items.Remove(LogOfButton);
+        //}
     }
 
     private static async Task ReconnectAsync()
     {
+        if (_eventHub is null) return;
+
         try
         {
             var isDisconected = await _eventHub.DisconnectAsync();
+            if(isDisconected) await _eventHub.ConnectAsync();
         }
         catch (Exception ex)
         {
             string error = ex.Message;
         }
-
-        await _eventHub.ConnectAsync();
     }
 
     public static async Task LoginAsync()
     {
-#if ANDROID
-        if (_logOfButton is not null)
-        {
-            Shell.Current.Items.Add(_logOfButton);
-        }
-        var accountPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Account");
-        accountPage.FlyoutItemIsVisible = true;
+#if !ANDROID
 
-        var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
-        loginPage.FlyoutItemIsVisible = false;
+        var roles = await GetUserRoles();
+
+        if (roles.Contains("Admin"))
+        {
+            if (AdminMainPage is not null)
+            {
+                Shell.Current.Items.Add(AdminMainPage);
+                Shell.Current.CurrentItem = AdminMainPage;
+            }
+        }
+        else if(roles.Contains("AuthorizedPersonel"))
+        {
+            if (AuthorizedPersonelMainPage is not null)
+            {
+                Shell.Current.Items.Add(AuthorizedPersonelMainPage);
+                Shell.Current.CurrentItem = AuthorizedPersonelMainPage;
+            }
+        }
+        else
+        {
+            if(UnauthorizedPage is not null)
+            {
+                Shell.Current.Items.Add(UnauthorizedPage);
+                Shell.Current.CurrentItem = UnauthorizedPage;
+            }
+        }
+
+
+
+        //var registerPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Register");
+
+        //if (registerPage is not null) Shell.Current.Items.Remove(registerPage);
+
+        //if(registerPage == RegisterPage)
+        //{
+        //    string error = "Glup si ko kurac";
+        //}
+
+
 #endif
+        if (AccountPage is not null) Shell.Current.Items.Add(AccountPage);
+        if (LogOfButton is not null) Shell.Current.Items.Add(LogOfButton);
+        if (LoginPage is not null) Shell.Current.Items.Remove(LoginPage);
+        if (RegisterPage is not null) Shell.Current.Items.Remove(RegisterPage);
+
+
+
         await ReconnectAsync();
+        //#if ANDROID
+        //        if (_logOfButton is not null)
+        //        {
+        //            Shell.Current.Items.Add(_logOfButton);
+        //        }
+        //        var accountPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Account");
+        //        accountPage.FlyoutItemIsVisible = true;
+
+        //        var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
+        //        loginPage.FlyoutItemIsVisible = false;
+        //#endif
     }
 
     public static async Task<Location> GetUserLocationAsync()
@@ -138,6 +206,27 @@ public static class UserSessionManager
         string userId = jwtToken.Claims.FirstOrDefault(x=> x.Type == "Id").Value;
 
         return userId ?? string.Empty; 
+    }
+
+    public static async Task<IEnumerable<string>> GetUserRoles()
+    {
+        var jwtToken = await SecureStorage.GetAsync("token");
+        
+        if(jwtToken is null) return Enumerable.Empty<string>();
+
+        var handler = new JwtSecurityTokenHandler();
+        var token = handler.ReadJwtToken(jwtToken);
+        var claims = token.Claims;
+
+        var roles = new List<string>();
+        foreach (var claim in claims)
+        {
+            if (claim.Type == "role")
+            {
+                roles.Add(claim.Value);
+            }
+        }
+        return roles;
     }
 
     public static async Task<bool> IsTokenValid()

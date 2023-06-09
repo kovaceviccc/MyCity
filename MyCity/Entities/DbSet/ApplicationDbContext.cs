@@ -10,6 +10,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Like> Likes { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Comment> Comments { get; set; }
+    public DbSet<PermissionRequest> PermissionRequests { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {

@@ -16,6 +16,5 @@ public interface IEventEndpoint
     Task<bool> DeleteEventAsync(string id);
     Task<bool> UpdateEventAsync(string id, string title, string description);
     Task<(bool,EventModel)> GetEventByIdAsync(string id);
-    Task<bool> PostCommentAsync(string eventId, string content);
     Task<IEnumerable<CommentModel>> GetAllComments(string eventId);
 }

@@ -4,8 +4,7 @@
              xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
              x:Class="DesktopUI.View.RegisterPage"
              x:DataType="viewmodel:RegisterPageViewModel"
-             NavigationPage.HasBackButton="True"
-             FlyoutItem.IsVisible="False">
+             Title="Register">
     
     <Grid ColumnDefinitions="*,*,*">
 

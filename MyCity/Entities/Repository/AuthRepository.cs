@@ -1,11 +1,14 @@
 ﻿using Entities.DbSet;
 using Entities.Domain.Enums;
+using Entities.Helpers;
+using Entities.Models;
 using Entities.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -301,6 +304,90 @@ public class AuthRepository : IAuthRepository
         }catch (Exception) 
         {
             return false;
+        }
+    }
+
+    public async Task<IEnumerable<BasicRoleModel>> GetAllRoles()
+    {
+        try
+        {
+            var roles = await _context.Roles
+                                      .Select(x => new BasicRoleModel
+                                      {
+                                          Id = x.Id,
+                                          RoleName = x.Name!
+                                      })
+                                      .ToListAsync();
+
+            return roles;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return Enumerable.Empty<BasicRoleModel>();
+        }
+    }
+
+    public async Task<IEnumerable<BasicRoleModel>> GetAllRequredRoles(string userId)
+    {
+        var allRoles = await GetAllRoles();
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user is null) return Enumerable.Empty<BasicRoleModel>();
+
+        var userRoles = await _context.UserRoles
+                                      .Where(x=> x.UserId == userId)
+                                      .Select(x=> new BasicRoleModel
+                                      {
+                                          Id = x.RoleId,
+                                          RoleName = x.RoleId
+
+                                      })
+                                      .ToListAsync(); 
+        
+        var rolesNotAssignedToUser = allRoles.Except(userRoles, new BasicRoleModelComparer());
+
+        return rolesNotAssignedToUser;
+
+    }
+
+    public async Task<(bool, string)> SubmitRoleRequest(string roleId, string userId)
+    {
+        try
+        {
+            var role = await _roleManager.FindByIdAsync(roleId);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if(role is null || user is null) return (false, "User or role not found");
+
+            var requestExists = await _context.PermissionRequests
+                                              .Include(x=> x.Role)
+                                              .Where(x => (x.User.Id == user.Id && x.Role.Id == role.Id) && x.Archived == false)
+                                              .FirstOrDefaultAsync();
+
+            if (requestExists is not null) return (false, "Request already exists");
+
+
+            var request = new PermissionRequest
+            {
+                User = user,
+                Role = role
+            };
+
+            
+
+            await _context.PermissionRequests.AddAsync(request);
+            await _context.SaveChangesAsync();
+
+            return (true, "Request added succesfully");
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return (false, error);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DesktopUI.View;
+﻿using DesktopUI.MenuItems;
+using DesktopUI.View;
 using DesktopUI.ViewModel;
 using MAUI_Library.API;
 using MAUI_Library.API.Endpoints;
@@ -23,16 +24,31 @@ namespace DesktopUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            //services 
+            //application pages
 
-            builder.Services.AddTransient<LoginPage>();
-            builder.Services.AddTransient<LoginPageViewModel>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
 
-            builder.Services.AddTransient<RegisterPage>();
-            builder.Services.AddTransient<RegisterPageViewModel>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<RegisterPageViewModel>();
 
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton<AppShellViewModel>();
+
+            builder.Services.AddSingleton<AdminMainPage>();
+            builder.Services.AddSingleton<AdminMainPageViewModel>();
+
+            builder.Services.AddSingleton<AuthorizedPersonelMainPage>();
+            builder.Services.AddSingleton<AuthorizedPersonelMainPageViewModel>();
+
+            builder.Services.AddSingleton<AccountPageViewModel>();
+            builder.Services.AddSingleton<AccountPage>();
+
+            builder.Services.AddSingleton<UnauthorizedPageViewModel>();
+            builder.Services.AddSingleton<UnauthorizedPage>(); 
+
+            //menu items
+            builder.Services.AddSingleton<LogoutButton>();
 
             //library services
             builder.Services.AddSingleton<LoggedInUserModel>();
@@ -41,6 +57,7 @@ namespace DesktopUI
             //endpoints
             builder.Services.AddSingleton<IEventEndpoint, EventEndpoint>();
             builder.Services.AddSingleton<IAuthEndpoint, AuthEndpoint>();
+            builder.Services.AddSingleton<IAdminEndpoint, AdminEndpoint>();
 
             //SignalR servisi(hubovi)
             builder.Services.AddSingleton<IEventHub, EventHub>();

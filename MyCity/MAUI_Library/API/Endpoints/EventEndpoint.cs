@@ -109,11 +109,6 @@ public class EventEndpoint : IEventEndpoint
         }
     }
 
-    public Task<bool> PostCommentAsync(string eventId, string content)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<IEnumerable<CommentModel>> GetAllComments(string id)
     {
         _apiHelper.ApiClient.DefaultRequestHeaders.Clear();
