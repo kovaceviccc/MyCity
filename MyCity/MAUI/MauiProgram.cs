@@ -15,6 +15,9 @@ using MAUI.Helpers;
 using MAUI_Library.API.Hubs.Interfaces;
 using MAUI_Library.API.Hubs;
 using Plugin.LocalNotification;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
+using Android.Telephony.Data;
 
 namespace MAUI
 {
@@ -33,11 +36,22 @@ namespace MAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            //custom handlers
             builder.ConfigureMauiHandlers(handlers =>
             {
                 handlers.AddHandler<Microsoft.Maui.Controls.Maps.Map, CustomMapHandler>();
             });
-    
+
+            //var assembly = Assembly.GetExecutingAssembly();
+            //using var stream = assembly.GetManifestResourceStream("MAUI.appsettings.json");
+
+            //var config = new ConfigurationBuilder()
+            //         .AddJsonStream(stream)
+            //         .Build();
+
+            //builder.Configuration.AddConfiguration(config);
+
+
             //MAUI app services
             builder.Services.AddSingleton<RegisterPageViewModel>();
             builder.Services.AddSingleton<RegisterPage>();

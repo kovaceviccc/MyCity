@@ -628,6 +628,12 @@
     <AppxPackagedFile Include="C:\Users\Petar\.nuget\packages\microsoft.aspnetcore.signalr.protocols.json\7.0.5\lib\net7.0\Microsoft.AspNetCore.SignalR.Protocols.Json.dll">
       <PackagePath>Microsoft.AspNetCore.SignalR.Protocols.Json.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Petar\.nuget\packages\microsoft.extensions.caching.abstractions\7.0.0\lib\net7.0\Microsoft.Extensions.Caching.Abstractions.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Abstractions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Petar\.nuget\packages\microsoft.extensions.caching.memory\7.0.0\lib\net7.0\Microsoft.Extensions.Caching.Memory.dll">
+      <PackagePath>Microsoft.Extensions.Caching.Memory.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Petar\.nuget\packages\microsoft.extensions.configuration\7.0.0\lib\net7.0\Microsoft.Extensions.Configuration.dll">
       <PackagePath>Microsoft.Extensions.Configuration.dll</PackagePath>
     </AppxPackagedFile>
@@ -909,6 +915,21 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png">
       <PackagePath>appiconWideTile.scale-400.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-100.png">
+      <PackagePath>check_solid.scale-100.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-125.png">
+      <PackagePath>check_solid.scale-125.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-150.png">
+      <PackagePath>check_solid.scale-150.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-200.png">
+      <PackagePath>check_solid.scale-200.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-400.png">
+      <PackagePath>check_solid.scale-400.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-100.png">
       <PackagePath>danger.scale-100.png</PackagePath>

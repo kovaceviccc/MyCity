@@ -1,6 +1,7 @@
 ﻿using MAUI_Library.API.Interfaces;
 using MAUI_Library.Helpers;
 using MAUI_Library.Models.Incoming;
+using MAUI_Library.Models.OutgoingDto;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -39,14 +40,24 @@ public class AdminEndpoint : IAdminEndpoint
         _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         _apiHelper.ApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
 
-        using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Event/Admin/GetAll/{timeSpan}"))
+
+        try
         {
-            if (!response.IsSuccessStatusCode) return Enumerable.Empty<BasicEventModel>();
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Event/Admin/GetAll/{timeSpan}"))
+            {
+                if (!response.IsSuccessStatusCode) return Enumerable.Empty<BasicEventModel>();
 
-            var result = await response.Content.ReadFromJsonAsync<IEnumerable<BasicEventModel>>();
+                var result = await response.Content.ReadFromJsonAsync<IEnumerable<BasicEventModel>>();
 
-            return result;
+                return result;
+            }
         }
+        catch (Exception ex)
+        {
+
+            return Enumerable.Empty<BasicEventModel>();
+        }
+        
     }
 
     public async Task<IEnumerable<RoleModel>> GetAllRoles()
@@ -151,6 +162,139 @@ public class AdminEndpoint : IAdminEndpoint
 
            return (true, error);
         }
+    }
+
+    public async Task<(bool, IEnumerable<RoleRequestModel>)> GetAllRoleRequests()
+    {
+        var valid = await UserSessionManager.IsTokenValid();
+
+        if (!valid)
+        {
+            var refresh = await _apiHelper.RefreshTokens();
+
+            if (!refresh) return (false, Enumerable.Empty<RoleRequestModel>());
+        }
+
+        var jwtToken = await SecureStorage.GetAsync("token");
+
+        if (jwtToken is null)
+        {
+            return (false, Enumerable.Empty<RoleRequestModel>());
+        }
+
+        _apiHelper.ApiClient.DefaultRequestHeaders.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        _apiHelper.ApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+        using HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Auth/Admin/Roles/GetAllRoleRequests");
+
+        if (!response.IsSuccessStatusCode) return (false, Enumerable.Empty<RoleRequestModel>());
+
+        var result = await response.Content.ReadFromJsonAsync<IEnumerable<RoleRequestModel>>();
+
+        return (true, result);
+
+    }
+
+    public async Task<bool> RespondToRoleRequest(RoleRequestRespondDto responseDto)
+    {
+        var valid = await UserSessionManager.IsTokenValid();
+
+        if (!valid)
+        {
+            var refresh = await _apiHelper.RefreshTokens();
+
+            if (!refresh) return false;
+        }
+
+        var jwtToken = await SecureStorage.GetAsync("token");
+
+        if (jwtToken is null)
+        {
+            return false;
+        }
+
+        _apiHelper.ApiClient.DefaultRequestHeaders.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        _apiHelper.ApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+        using HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("api/Auth/Admin/Roles/RespondToRoleRequest", responseDto);
+
+        return response.IsSuccessStatusCode;
+    }
+
+    public async Task<IEnumerable<BasicEventModel>> GetAllEmergencies(TimeSpan timeSpan)
+    {
+        var valid = await UserSessionManager.IsTokenValid();
+
+        if (!valid)
+        {
+            var refresh = await _apiHelper.RefreshTokens();
+
+            if (!refresh) return Enumerable.Empty<BasicEventModel>();
+        }
+
+        var jwtToken = await SecureStorage.GetAsync("token");
+
+        if (jwtToken is null)
+        {
+            return Enumerable.Empty<BasicEventModel>();
+        }
+
+        _apiHelper.ApiClient.DefaultRequestHeaders.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        _apiHelper.ApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+
+        try
+        {
+            using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync($"api/Event/Admin/GetAllEmergencies/{timeSpan}"))
+            {
+                if (!response.IsSuccessStatusCode) return Enumerable.Empty<BasicEventModel>();
+
+                var result = await response.Content.ReadFromJsonAsync<IEnumerable<BasicEventModel>>();
+
+                return result;
+            }
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return Enumerable.Empty<BasicEventModel>();
+        }
+    }
+
+    public async Task<bool> RespondToEmergencyEvent(string eventId)
+    {
+        var valid = await UserSessionManager.IsTokenValid();
+
+        if (!valid)
+        {
+            var refresh = await _apiHelper.RefreshTokens();
+
+            if (!refresh) return false;
+        }
+
+        var jwtToken = await SecureStorage.GetAsync("token");
+
+        if (jwtToken is null)
+        {
+            return false;
+        }
+
+
+        _apiHelper.ApiClient.DefaultRequestHeaders.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Clear();
+        _apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        _apiHelper.ApiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+
+        using HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("api/Event/Admin/RespondToEmergencyEvent", eventId);
+
+        return response.IsSuccessStatusCode; 
     }
 
     public AdminEndpoint(IApiHelper apiHelper)

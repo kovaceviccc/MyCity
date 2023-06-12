@@ -13,21 +13,28 @@
     FlyoutFooter="Please help me"
     FlyoutBackgroundColor="#11282c34">
 
-    <!--<FlyoutItem Title="Admin page">
+    <FlyoutItem Title="Dashboard"
+                x:Name="AdminPage">
         <ShellContent ContentTemplate="{DataTemplate view:AdminMainPage}"/>
-    </FlyoutItem>-->
+    </FlyoutItem>
+    <FlyoutItem Title="Dashboard"
+                x:Name="AuthorizedPersonelPage">
+        <ShellContent ContentTemplate="{DataTemplate view:AuthorizedPersonelMainPage}"/>
+    </FlyoutItem>
 
-    <!--<FlyoutItem Title="Login">
+    <FlyoutItem Title="Login"
+                x:Name="LoginPage">
         
         <ShellContent ContentTemplate="{DataTemplate view:LoginPage}"/>
         
     </FlyoutItem>
 
-    <FlyoutItem Title="Register">
+    <FlyoutItem Title="Register"
+                x:Name="RegisterPage">
         
         <ShellContent ContentTemplate="{DataTemplate view:RegisterPage}"/>
         
-    </FlyoutItem>-->
+    </FlyoutItem>
 
     <!--<ShellContent Title="Login" ContentTemplate="{DataTemplate view:LoginPage}"/>
     <ShellContent Title="Register" ContentTemplate="{DataTemplate view:RegisterPage}"/>-->

@@ -17,10 +17,45 @@ public static class Mapper
             {
                 Id = e.Id,
                 EventType = e.EventType,
-                Responded = e.Responded
+                DateCreated = e.DateCreated,
+                EventTitle = e.EventTitle,
+                EventDescription = e.EventDescription,
+                Responded = e.Responded,
+                //PersonelResponded = new PersonelDisplayModel
+                //{
+                //    Id = e.PersonelResponded.Id,
+                //    FirstName = e.PersonelResponded.FirstName,
+                //    LastName = e.PersonelResponded.LastName,
+                //    Email = e.PersonelResponded.Email,
+                //    Roles = e.PersonelResponded.Roles
+                //},
             });
         }
 
          return result;
-    } 
+    }
+    
+    public static ObservableCollection<RoleRequestDisplayModel> Map(this IEnumerable<RoleRequestModel> roleRequests)
+    {
+        ObservableCollection<RoleRequestDisplayModel> result = new();
+
+
+        foreach(var roleRequest in roleRequests)
+        {
+            result.Add(new RoleRequestDisplayModel
+            {
+                Id = roleRequest.Id,
+                RoleName = roleRequest.RoleName,
+                DateCreated = roleRequest.DateCreated,
+                UserUserName = roleRequest.User.UserName,
+                UserId = roleRequest.User.Id,
+                UserFirstName = roleRequest.User.FirstName,
+                UserLastName = roleRequest.User.LastName,
+                UserEmail = roleRequest.User.Email
+            });
+        }
+
+        return result;
+
+    }
 }

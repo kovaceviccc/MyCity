@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j9z65aTck03VQoUyL1/0toH7mTbd2jVU1YTOp5uwp88ARD23oyLLHy5Z7mi1EQehHkJmN0rX+x968wbKILEL3A==",
+  "dgSpecHash": "h7eiW3UGnLLnvx8MaA0b8I3y9bg4iSEknAzVfiv1PyylDxRKoclgvAh9PppP6aEZ5rHE+g1X8ccOZlrLDGXhJg==",
   "success": true,
   "projectFilePath": "C:\\ProjekatSW\\MyCity-GitHub\\MyCity\\MyCity\\DesktopUI\\DesktopUI.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,8 @@
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\7.0.5\\microsoft.aspnetcore.signalr.common.7.0.5.nupkg.sha512",
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.json\\7.0.5\\microsoft.aspnetcore.signalr.protocols.json.7.0.5.nupkg.sha512",
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Petar\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Petar\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Petar\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",

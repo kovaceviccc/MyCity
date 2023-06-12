@@ -40,6 +40,7 @@ namespace DesktopUI
             //    Shell.Current.Items.Add(flyoutItem);
 
             //};
+
         }
 
         public override async void CloseWindow(Window window)

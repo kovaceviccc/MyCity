@@ -23,23 +23,25 @@ public static class UserSessionManager
 
     public static async Task LogofAsync()
     {
-
-        if(LoginPage is not null) Shell.Current.Items.Add(LoginPage);
-        if(RegisterPage is not null) Shell.Current.Items.Add(RegisterPage);
+        if(!Shell.Current.Items.Contains(LoginPage))
+        {
+            if(LoginPage is not null) Shell.Current.Items.Add(LoginPage);
+        }
         Shell.Current.CurrentItem = LoginPage;
 
 #if !ANDROID
-        if(AdminMainPage is not null) Shell.Current.Items.Remove(AdminMainPage);
+        if (RegisterPage is not null) Shell.Current.Items.Add(RegisterPage);
+        if (AdminMainPage is not null) Shell.Current.Items.Remove(AdminMainPage);
         if (AuthorizedPersonelMainPage is not null) Shell.Current.Items.Remove(AuthorizedPersonelMainPage);
+        if (UnauthorizedPage is not null) Shell.Current.Items.Remove(UnauthorizedPage);
 #endif
         if (LogOfButton is not null) Shell.Current.Items.Remove(LogOfButton);
         if (AccountPage is not null) Shell.Current.Items.Remove(AccountPage);
 
         RemoveTokens();
 
-#if ANDROID
         await ReconnectAsync();
-#endif
+
         //var loginPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Login");
         //loginPage.FlyoutItemIsVisible= true;
 
@@ -71,6 +73,8 @@ public static class UserSessionManager
 
     public static async Task LoginAsync()
     {
+
+
 #if !ANDROID
 
         var roles = await GetUserRoles();
@@ -99,24 +103,13 @@ public static class UserSessionManager
                 Shell.Current.CurrentItem = UnauthorizedPage;
             }
         }
-
-
-
-        //var registerPage = Shell.Current.Items.FirstOrDefault(item => item.Title == "Register");
-
-        //if (registerPage is not null) Shell.Current.Items.Remove(registerPage);
-
-        //if(registerPage == RegisterPage)
-        //{
-        //    string error = "Glup si ko kurac";
-        //}
-
+        if (RegisterPage is not null) Shell.Current.Items.Remove(RegisterPage);
 
 #endif
+
         if (AccountPage is not null) Shell.Current.Items.Add(AccountPage);
         if (LogOfButton is not null) Shell.Current.Items.Add(LogOfButton);
         if (LoginPage is not null) Shell.Current.Items.Remove(LoginPage);
-        if (RegisterPage is not null) Shell.Current.Items.Remove(RegisterPage);
 
 
 

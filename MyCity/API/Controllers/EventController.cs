@@ -123,4 +123,54 @@ public class EventController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
+
+    [HttpGet]
+    [Route("Admin/GetAllEmergencies/{timeSpanString}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles ="AuthorizedPersonel")]
+    public async Task<IActionResult> GetAllEmergencies(string timeSpanString)
+    {
+        var success = TimeSpan.TryParse(timeSpanString, out TimeSpan timeSpan);
+
+        if (!success)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest);
+        }
+
+        try
+        {
+            var result = await _eventRepository.GetAllEmergencies(timeSpan);
+
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error 
+
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
+
+    [HttpPost]
+    [Route("Admin/RespondToEmergencyEvent")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "AuthorizedPersonel")]
+    public async Task<IActionResult> RespondToEmergencyRequest([FromBody]string eventId)
+    {
+        try
+        {
+            string userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value!;
+
+            var result = await _eventRepository.RespondToEmergencyEvent(eventId, userId);
+
+            if (!result) return StatusCode(StatusCodes.Status400BadRequest);
+
+            return StatusCode(StatusCodes.Status202Accepted);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+    }
 }

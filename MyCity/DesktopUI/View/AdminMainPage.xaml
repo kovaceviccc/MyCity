@@ -2,9 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
+             xmlns:model="clr-namespace:DesktopUI.Models"
+             xmlns:converter="clr-namespace:MAUI_Library.Helpers;assembly=MAUI_Library"
              x:Class="DesktopUI.View.AdminMainPage"
              x:DataType="viewmodel:AdminMainPageViewModel"
              Title="Dashboard">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ButtonCommandParameterConverter x:Key="ButtonCommandParameterConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
 
     <Grid RowDefinitions="*,*,*">
 
@@ -15,8 +24,8 @@
             <Label Text="Dashboard"
                    FontSize="Title"
                    Grid.Row="0"
-                   VerticalTextAlignment="Start"
-                   VerticalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
                    HorizontalOptions="StartAndExpand"
                    HeightRequest="50"/>
 
@@ -75,6 +84,7 @@
                                 Text="More info"
                                 TextTransform="Uppercase"
                                 BackgroundColor="#FF00a2f2"
+                                Command="{Binding ShowAllEventsCommand}"
                                 CornerRadius="1"
                                 VerticalOptions="Fill"
                                 HorizontalOptions="Fill"
@@ -249,7 +259,8 @@
                                 HorizontalOptions="Fill"
                                 Padding="0"
                                 Margin="0"
-                                HeightRequest="10"/>
+                                HeightRequest="10"
+                                Command="{Binding ShowUserRequestsCommand}"/>
                     </Grid>
                 </Frame>
 
@@ -289,12 +300,11 @@
                           Padding="10,10,10,0"
                           x:Name="Diagram"
                           SizeChanged="Diagram_SizeChanged">
-
                         <Frame Grid.Column="0"
-                               BackgroundColor="DodgerBlue"
+                               BackgroundColor="#CC00a2f2"
                                VerticalOptions="EndAndExpand"
                                CornerRadius="0"
-                               BorderColor="DodgerBlue"
+                               BorderColor="#CC00a2f2"
                                Padding="0"
                                Margin="0">
 
@@ -310,8 +320,8 @@
                         <Frame Grid.Column="2"
                                VerticalOptions="EndAndExpand"
                                CornerRadius="0"
-                               BorderColor="CadetBlue"
-                               BackgroundColor="CadetBlue"
+                               BorderColor="#dc493c"
+                               BackgroundColor="#dc493c"
                                Padding="0"
                                Margin="0">
 
@@ -329,8 +339,8 @@
                         <Frame Grid.Column="4"
                                VerticalOptions="EndAndExpand"
                                CornerRadius="0"
-                               BorderColor="PaleVioletRed"
-                               BackgroundColor="PaleVioletRed"
+                               BorderColor="#04a464"
+                               BackgroundColor="#04a464"
                                Margin="0"
                                Padding="0">
 
@@ -348,28 +358,122 @@
                            CornerRadius="0"
                            BorderColor="Black"
                            VerticalOptions="Fill">
-                        
+
                     </Frame>
 
 
 
                 </Grid>
+            </Frame>
 
 
+            <Frame Grid.Column="3"
+                   Grid.ColumnSpan="2"
+                   BackgroundColor="#dc8c34"
+                   Padding="0"
+                   x:Name="RoleRequestsFrame">
+
+                <CollectionView BackgroundColor="Transparent"
+                                ItemsSource="{Binding RoleRequests}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:RoleRequestDisplayModel">
+
+                            <Frame Padding="3"
+                                   BackgroundColor="LightGray"
+                                   Margin="4">
+                                <Grid ColumnDefinitions="*,*,*,auto,auto">
+
+                                    <Grid Grid.Column="0"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                               Text="{Binding UserUserName}"
+                                               HorizontalOptions="Start"
+                                               VerticalOptions="Start"/>
+
+                                        <Label Grid.Row="1"
+                                               Text="{Binding UserEmail}"/>
+                                    </Grid>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding RoleName}"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label Grid.Column="2"
+                                           Text="{Binding DateCreated}"
+                                           VerticalOptions="CenterAndExpand"
+                                           HorizontalOptions="CenterAndExpand"/>
+
+                                    <Button Grid.Column="3"
+                                            Text="Accept"
+                                            Margin="0"
+                                            Padding="0"
+                                            Command="{Binding  Source={RelativeSource AncestorType={x:Type viewmodel:AdminMainPageViewModel}}, Path=AcceptRoleRequestCommand}"
+                                            CommandParameter="{Binding .}">
+
+                                    </Button>
+                                    <Button Grid.Column="4"
+                                            Text="Deny"
+                                            Margin="0"
+                                            Padding="0"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AdminMainPageViewModel}}, Path=DenyRoleRequestCommand}"
+                                            CommandParameter="{Binding .}"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
             </Frame>
 
             <Frame Grid.Column="3"
                    Grid.ColumnSpan="2"
-                   BackgroundColor="CadetBlue"
-                   BorderColor="Transparent"
-                   CornerRadius="3">
+                   BackgroundColor="#CC00a2f2"
+                   BorderColor="#CC00a2f2"
+                   Padding="0"
+                   x:Name="EventsFrame"
+                   IsVisible="False"
+                   IsEnabled="False">
 
-                <Label Text="No content"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       FontSize="40"/>
+                <CollectionView BackgroundColor="Transparent"
+                                ItemsSource="{Binding EventsToDisplay}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:BasicEventDisplayModel">
 
+                            <Frame BackgroundColor="LightGray"
+                                   Padding="3"
+                                   Margin="4">
 
+                                <Grid ColumnDefinitions="*,auto">
+
+                                    <Grid Grid.Column="0"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding EventTitle}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventDescription}"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Column="1"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding DateCreated}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventType}"/>
+
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Frame>
         </Grid>
     </Grid>

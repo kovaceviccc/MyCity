@@ -3,6 +3,7 @@ using MAUI_Library.Helpers;
 using MAUI_Library.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace MAUI_Library.API;
 
@@ -10,23 +11,26 @@ public class ApiHelper : IApiHelper
 {
     private HttpClient _apiClient { get; set; }
     private LoggedInUserModel _loggedInUserModel { get; set; }
-    
+
+    private readonly IConfiguration _configuration;
+
     public HttpClient ApiClient
     {
         get { return _apiClient; }
     }
 
 
-    public ApiHelper(LoggedInUserModel loggedInUserModel)
+    public ApiHelper(LoggedInUserModel loggedInUserModel,
+                     IConfiguration configuration)
     {
-        Initialize();
         _loggedInUserModel = loggedInUserModel;
-        
+        _configuration = configuration;
+        Initialize();
     }
 
     private void Initialize()
     {
-        string api;
+        string api;/* _configuration.GetConnectionString("APIConnectionString");*/
 
 #if DEBUG && ANDROID
         HttpsClientHandlerService handler = new HttpsClientHandlerService();

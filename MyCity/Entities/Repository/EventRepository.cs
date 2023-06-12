@@ -1,4 +1,5 @@
 ﻿using Entities.DbSet;
+using Entities.Domain.Enums;
 using Entities.Models;
 using Entities.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -210,7 +211,10 @@ public class EventRepository : IEventRepository
                                               {
                                                   Id = x.Id,
                                                   EventType = x.EventType,
-                                                  Responded = true
+                                                  DateCreated = x.DateCreated,
+                                                  EventTitle = x.Title,
+                                                  EventDescription = x.Description,
+                                                  Responded = x.Responded,
                                               })
                                               .ToListAsync();
             return events;
@@ -220,6 +224,85 @@ public class EventRepository : IEventRepository
             string error = ex.Message;
             //log error
             return Enumerable.Empty<BasicEventModel>();
+        }
+    }
+
+    public async Task<IEnumerable<BasicEventModel>> GetAllEmergencies(TimeSpan timeSpan)
+    {
+        try
+        {
+            var startTime = DateTime.UtcNow.Subtract(timeSpan);
+
+            var events = await _context.Events.Where(x => x.Archived == false &&
+                                                          (x.EventType != EventTypeEnum.Party || x.EventType != EventTypeEnum.PublicEvent) &&
+                                                          x.DateCreated >= startTime)
+                                              .Select(x => new BasicEventModel
+                                              {
+                                                  Id = x.Id,
+                                                  EventType = x.EventType,
+                                                  DateCreated = x.DateCreated,
+                                                  EventTitle = x.Title,
+                                                  EventDescription = x.Description,
+                                                  Responded = x.Responded,
+                                              })
+                                              .ToListAsync();
+            var newEvents = await _context.EventResponds.Include(x => x.User)
+                                                        .Include(x => x.Event)
+                                                        .Where(x => x.Archived == false &&
+                                                        (x.Event.EventType != EventTypeEnum.Party || x.Event.EventType != EventTypeEnum.PublicEvent) &&
+                                                        x.Event.DateCreated >=startTime)
+                                                        .Select(x=> new BasicEventModel
+                                                        {
+                                                            Id = x.Event.Id,
+                                                            EventType = x.Event.EventType,
+                                                            DateCreated = x.Event.DateCreated,
+                                                            EventTitle = x.Event.Title,
+                                                            EventDescription = x.Event.Description,
+                                                            Responded = x.Event.Responded
+                                                        })
+                                                        .ToListAsync(); 
+
+
+            return events;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log error
+            return Enumerable.Empty<BasicEventModel>();
+        }
+    }
+
+    public async Task<bool> RespondToEmergencyEvent(string eventId, string responderId)
+    {
+        try
+        {
+            var eventToRespond = await GetById(eventId);
+
+            if (eventToRespond is null || eventToRespond.Responded == true) return false;
+
+            var responder = await _context.Users.FindAsync(responderId);
+
+            if (responder is null) return false;
+ 
+
+            var newRespond = new EventRespond
+            {
+                User = responder,
+                Event = eventToRespond
+            };
+
+            eventToRespond.Responded = true;
+            await _context.EventResponds.AddAsync(newRespond);
+            _context.Events.Update(eventToRespond);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            return false;
+            throw;
         }
     }
 }

@@ -4,42 +4,48 @@ using DesktopUI.ViewModel;
 using MAUI_Library.API.Hubs.Interfaces;
 using MAUI_Library.Helpers;
 
-namespace DesktopUI
+namespace DesktopUI;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+
+    public AppShell(AppShellViewModel vm,
+                    IServiceProvider serviceProvider)
     {
+        InitializeComponent();
+        BindingContext = vm;
 
-        public AppShell(AppShellViewModel vm,
-                        IServiceProvider serviceProvider)
-        {
-            InitializeComponent();
-            BindingContext = vm;
+        var eventHub = serviceProvider.GetService<IEventHub>();
+        var registerPage = RegisterPage;
+        var loginPage = LoginPage;
+        var adminMainPage = AdminPage;
+        var authorizedPersonelMainPage = AuthorizedPersonelPage; /*serviceProvider.GetService<AuthorizedPersonelMainPage>();*/
+        var accountPage = serviceProvider.GetService<AccountPage>();
+        var logoutButton = serviceProvider.GetService<LogoutButton>();
+        var unauthorizedPage = serviceProvider.GetService<UnauthorizedPage>();
 
-            var eventHub = serviceProvider.GetService<IEventHub>();
-            var registerPage = serviceProvider.GetService<RegisterPage>();
-            var loginPage = serviceProvider.GetService<LoginPage>();
-            var adminMainPage = serviceProvider.GetService<AdminMainPage>();
-            var authorizedPersonelMainPage = serviceProvider.GetService<AuthorizedPersonelMainPage>();
-            var accountPage = serviceProvider.GetService<AccountPage>();
-            var logoutButton = serviceProvider.GetService<LogoutButton>();
-            var unauthorizedPage = serviceProvider.GetService<UnauthorizedPage>();
+        if(eventHub is not null) UserSessionManager._eventHub = eventHub;
 
+        if(registerPage is not null) UserSessionManager.RegisterPage = registerPage;
 
-            if(eventHub is not null) UserSessionManager._eventHub = eventHub;
+        if(loginPage is not null) UserSessionManager.LoginPage = loginPage;
 
-            if(registerPage is not null) UserSessionManager.RegisterPage = registerPage;
+        if(adminMainPage is not null) UserSessionManager.AdminMainPage = adminMainPage;
 
-            if(loginPage is not null) UserSessionManager.LoginPage = loginPage;
+        if (accountPage is not null) UserSessionManager.AccountPage = accountPage;
 
-            if(adminMainPage is not null) UserSessionManager.AdminMainPage = adminMainPage;
+        if(authorizedPersonelMainPage is not null) UserSessionManager.AuthorizedPersonelMainPage = authorizedPersonelMainPage;
 
-            if (accountPage is not null) UserSessionManager.AccountPage = accountPage;
+        if(logoutButton is not null) UserSessionManager.LogOfButton = logoutButton;
 
-            if(authorizedPersonelMainPage is not null) UserSessionManager.AuthorizedPersonelMainPage = authorizedPersonelMainPage;
-
-            if(logoutButton is not null) UserSessionManager.LogOfButton = logoutButton;
-
-            if (unauthorizedPage is not null) UserSessionManager.UnauthorizedPage = unauthorizedPage;
-        }
+        if (unauthorizedPage is not null) UserSessionManager.UnauthorizedPage = unauthorizedPage;
     }
+
+    protected override async void OnAppearing()
+    {
+        Current.Items.Clear();
+        await UserSessionManager.LogofAsync();
+        base.OnAppearing();
+    }
+
 }

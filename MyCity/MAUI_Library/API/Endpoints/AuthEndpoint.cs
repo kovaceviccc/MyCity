@@ -17,7 +17,11 @@ public class AuthEndpoint : IAuthEndpoint
 
 	public async Task<bool> Register(RegisterRequestDto request)
 	{
-		using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsync("api/Auth/Register", JsonContent.Create(request)))
+
+		_apiHelper.ApiClient.DefaultRequestHeaders.Clear();
+		_apiHelper.ApiClient.DefaultRequestHeaders.Accept.Clear();
+		_apiHelper.ApiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+		using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsJsonAsync("api/Auth/Register", request))
 		{
 			return response.IsSuccessStatusCode;
 		}

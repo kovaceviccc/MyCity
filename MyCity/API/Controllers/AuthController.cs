@@ -320,4 +320,40 @@ public class AuthController : ControllerBase
             return StatusCode(StatusCodes.Status400BadRequest, error);
         }
     }
+
+    [HttpGet]
+    [Route("Admin/Roles/GetAllRoleRequests")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public async Task<IActionResult> GetllRoleRequests()
+    {
+        try
+        {
+            var result = await _authRepository.GetAllRoleRequests();
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+    [HttpPost]
+    [Route("Admin/Roles/RespondToRoleRequest")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles ="Admin")]
+    public async Task<IActionResult> RespondToRoleRequest(RoleRequestResponseDto roleRequestResponseDto)
+    {
+        try
+        {
+            var result = await _authRepository.RespondToRoleRequest(roleRequestResponseDto.RequestId, roleRequestResponseDto.UserId, roleRequestResponseDto.Approved);
+            if(result) return StatusCode(StatusCodes.Status202Accepted);
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            //log errors
+            throw;
+        }
+
+        return StatusCode(StatusCodes.Status500InternalServerError);
+    }
 }

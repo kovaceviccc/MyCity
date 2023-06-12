@@ -2,11 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
+             xmlns:converter ="clr-namespace:MAUI_Library.Helpers;assembly=MAUI_Library"
              x:Class="DesktopUI.View.RegisterPage"
              x:DataType="viewmodel:RegisterPageViewModel"
              Title="Register">
+
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+
     
-    <Grid ColumnDefinitions="*,*,*">
+
+<Grid ColumnDefinitions="*,*,*">
 
         <Grid Grid.Column="1"
               RowDefinitions="*,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,*"
@@ -23,6 +30,7 @@
                    BorderColor="Transparent">
 
                 <Entry Placeholder="First name"
+                       Text="{Binding FirstName}"
                            FontAutoScalingEnabled="True"
                            FontSize="Subtitle"
                            MinimumWidthRequest="400"
@@ -32,7 +40,7 @@
             </Frame>
 
             <Label Grid.Row="2"
-                   Text="{Binding FistNameLabel}"
+                   Text="{Binding FirstNameLabel}"
                    TextColor="PaleVioletRed"
                    FontSize="13"/>
 
@@ -40,6 +48,7 @@
                    Padding="0"
                    BorderColor="Transparent">
                 <Entry Placeholder="Last name"
+                       Text="{Binding LastName}"
                        FontAutoScalingEnabled="True"
                        FontSize="Subtitle"
                        MinimumWidthRequest="400"
@@ -56,6 +65,7 @@
                    Padding="0"
                    BorderColor="Transparent">
                 <Entry Placeholder="Email"
+                       Text="{Binding Email}"
                        FontAutoScalingEnabled="True"
                        FontSize="Subtitle"
                        MinimumWidthRequest="400"
@@ -72,6 +82,7 @@
                    Padding="0"
                    BorderColor="Transparent">
                 <Entry Placeholder="Password"
+                       Text="{Binding Password}"
                        FontAutoScalingEnabled="True"
                        FontSize="Subtitle"
                        MinimumWidthRequest="400"
@@ -90,7 +101,8 @@
                    BorderColor="Transparent"
                    Padding="0">
 
-                <DatePicker HorizontalOptions="CenterAndExpand"
+                <DatePicker 
+                            HorizontalOptions="CenterAndExpand"
                             Date="{Binding DateOfBirth}"/>
 
 
@@ -98,13 +110,11 @@
 
             <Label Grid.Row="10"/>
 
-            <Frame Grid.Row="11"
-                   BackgroundColor="Transparent"
-                   BorderColor="Transparent"
-                   Padding="0">
-
-                <Button Text="Register"/>
-            </Frame>
+            <Button Text="Register"
+                        Grid.Row="11"
+                        Command="{Binding RegisterCommand}"
+                        IsEnabled="{Binding RegisterCommand.IsRunning, Converter={StaticResource InverseBooleanConverter}}"/>
+            
         </Grid>
     </Grid>
 </ContentPage>

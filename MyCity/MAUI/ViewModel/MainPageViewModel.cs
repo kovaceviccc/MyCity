@@ -20,9 +20,6 @@ namespace MAUI.ViewModel;
 
 public partial class MainPageViewModel : ObservableObject
 {
-
-    
-
     [ObservableProperty]
     private Map mapa;
 

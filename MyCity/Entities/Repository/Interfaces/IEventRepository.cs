@@ -12,6 +12,7 @@ public interface IEventRepository
 {
     Task<IEnumerable<Event>> GetAllEventsAsync(TimeSpan timeSpan);
     Task<IEnumerable<BasicEventModel>> GetAllEventsAsync();
+    Task<IEnumerable<BasicEventModel>> GetAllEmergencies(TimeSpan timeSpan);
     Task<bool> AddEvent(Event @event);
     Task<bool> RemoveEvent(string eventId);
     Task<bool> BlockEvent(string eventId); //Admin only
@@ -19,4 +20,5 @@ public interface IEventRepository
     Task<Event?> GetById(string eventId);
     Task<(bool, Comment)> AddComment(string eventId, string content, string userId);
     Task<IEnumerable<Comment>> GetAllComments(string eventId);
+    Task<bool> RespondToEmergencyEvent(string eventId, string responderId);
 }

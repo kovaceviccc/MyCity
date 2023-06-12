@@ -2,13 +2,459 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:DesktopUI.ViewModel"
+             xmlns:model="clr-namespace:DesktopUI.Models"
+             xmlns:converter ="clr-namespace:MAUI_Library.Helpers;assembly=MAUI_Library"
              x:Class="DesktopUI.View.AuthorizedPersonelMainPage"
-             x:DataType="viewmodel:AdminMainPageViewModel"
+             x:DataType="viewmodel:AuthorizedPersonelMainPageViewModel"
              Title="Main Page">
-    <VerticalStackLayout>
-        <Label 
-            Text="Authorize personel main page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </ContentPage.Resources>
+    
+
+    <Grid RowDefinitions="*,*,*">
+
+        <Grid Grid.Row="0"
+              RowDefinitions="auto,*"
+              Padding="15">
+
+            <Label Text="Dashboard"
+                   FontSize="Title"
+                   Grid.Row="0"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   HeightRequest="50"/>
+
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="*,*,*"
+                  ColumnSpacing="40">
+
+                <Frame Grid.Column="0"
+                       BackgroundColor="#dc493c"
+                       CornerRadius="3"
+                       Margin="0"
+                       Padding="0"
+                       MaximumHeightRequest="200">
+
+                    <Grid RowDefinitions="*,auto"
+                          RowSpacing="5">
+
+                        <Grid Grid.Row="0"
+                              ColumnDefinitions="*,*"
+                              Padding="10">
+
+                            <Grid Grid.Column="0"
+                              RowDefinitions="*,*">
+
+                                <Label Grid.Row="0"
+                                       Text="{Binding Emergencies.Count}"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="End"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="Header"/>
+
+                                <Label Grid.Row="1"
+                                       Text="Emergency"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Start"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="20"/>
+
+                            </Grid>
+                            <Frame Grid.Row="0"
+                               Grid.Column="1">
+
+                            </Frame>
+                        </Grid>
+                        <Button Grid.Row="1"
+                                Text="More info"
+                                TextTransform="Uppercase"
+                                BackgroundColor="#d4342c"
+                                BorderColor="Transparent"
+                                CornerRadius="1"
+                                VerticalOptions="Fill"
+                                HorizontalOptions="Fill"
+                                Padding="0"
+                                Margin="0"
+                                HeightRequest="10"
+                                Command="{Binding ShowEmergencyFrameCommand}"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Grid.Column="1"
+                       BackgroundColor="#04a464"
+                       CornerRadius="3"
+                       Margin="0"
+                       Padding="0"
+                       MaximumHeightRequest="200">
+
+                    <Grid RowDefinitions="*,auto"
+                          RowSpacing="5">
+
+                        <Grid Grid.Row="0"
+                              ColumnDefinitions="*,*"
+                              Padding="10">
+
+                            <Grid Grid.Column="0"
+                              RowDefinitions="*,*">
+
+                                <Label Grid.Row="0"
+                                       Text="{Binding EventsResponded}"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="End"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="Header"/>
+
+                                <Label Grid.Row="1"
+                                       Text="Responded"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Start"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="20"/>
+
+                            </Grid>
+                            <Frame Grid.Row="0"
+                               Grid.Column="1">
+
+                            </Frame>
+                        </Grid>
+                        <Button Grid.Row="1"
+                                Text="More info"
+                                TextTransform="Uppercase"
+                                BorderColor="Transparent"
+                                BackgroundColor="#04945c"
+                                CornerRadius="1"
+                                VerticalOptions="Fill"
+                                HorizontalOptions="Fill"
+                                Padding="0"
+                                Margin="0"
+                                HeightRequest="10"
+                                Command="{Binding ShowRespondFrameCommand}"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Grid.Column="2"
+                       BackgroundColor="#f89c3c"
+                       CornerRadius="3"
+                       Margin="0"
+                       Padding="0"
+                       MaximumHeightRequest="200">
+
+                    <Grid RowDefinitions="*,auto"
+                          RowSpacing="5">
+
+                        <Grid Grid.Row="0"
+                              ColumnDefinitions="*,*"
+                              Padding="10">
+
+                            <Grid Grid.Column="0"
+                                  RowDefinitions="*,*">
+
+                                <Label Grid.Row="0"
+                                       Text="12"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="End"
+                                       HorizontalOptions="StartAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="Header"/>
+
+                                <Label Grid.Row="1"
+                                       Text="Not implemented"
+                                       TextColor="White"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Start"
+                                       FontAutoScalingEnabled="True"
+                                       FontSize="20"/>
+
+                            </Grid>
+                            <Frame Grid.Row="0"
+                               Grid.Column="1">
+
+                            </Frame>
+                        </Grid>
+                        <Button Grid.Row="1"
+                                Text="More info"
+                                TextTransform="Uppercase"
+                                BorderColor="Transparent"
+                                BackgroundColor="#dc8c34"
+                                CornerRadius="1"
+                                VerticalOptions="Fill"
+                                HorizontalOptions="Fill"
+                                Padding="0"
+                                Margin="0"
+                                HeightRequest="10"/>
+                    </Grid>
+                </Frame>
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Grid.RowSpan="2"
+              ColumnDefinitions="*,*,*,*,*"
+              ColumnSpacing="40"
+              Padding="15">
+
+            <Frame Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   BackgroundColor="Transparent"
+                   BorderColor="DarkGray"
+                   CornerRadius="3"
+                   Padding="0"
+                   Margin="0">
+
+                <Grid RowDefinitions="auto,*,auto">
+
+                    <Grid Grid.Row="0"
+                          ColumnDefinitions="*,*,*,*,*"
+                          Padding="10">
+
+                        <Button Grid.Column="4"
+                                Text="Refresh"
+                                ImageSource="users.svg"
+                                FontAutoScalingEnabled="True"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1"
+                          ColumnDefinitions="*,*"
+                          Padding="10,10,10,0"
+                          x:Name="Diagram"
+                          SizeChanged="Diagram_SizeChanged">
+
+                        <Grid Grid.Column="0"
+                              ColumnDefinitions="*,*,*,*,*,*">
+                            <Frame Grid.Column="0"
+                               VerticalOptions="EndAndExpand"
+                               CornerRadius="0"
+                               BorderColor="#dc493c"
+                               BackgroundColor="#dc493c"
+                               Padding="0"
+                               Margin="0">
+
+                                <Label Text="{Binding Emergencies.Count}"
+                                   FontSize="25"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+                            </Frame>
+
+                            <Frame Grid.Column="2"
+                               VerticalOptions="EndAndExpand"
+                               CornerRadius="0"
+                               BorderColor="#04a464"
+                               BackgroundColor="#04a464"
+                               Margin="0"
+                               Padding="0">
+
+                                <Label Text="{Binding EventsResponded}"
+                                   FontSize="25"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+                            </Frame>
+
+                            <Frame Grid.Column="4"
+                               BackgroundColor="#CC00a2f2"
+                               VerticalOptions="EndAndExpand"
+                               CornerRadius="0"
+                               BorderColor="#CC00a2f2"
+                               Padding="0"
+                               Margin="0">
+
+                                <Label Text="{Binding RespondedByCurrentUser}"
+                                   FontSize="25"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+                            </Frame>
+                        </Grid>
+
+                        <Grid Grid.Column="1"
+                              RowDefinitions="*,auto,auto,auto,*"
+                              ColumnDefinitions="*,auto,auto,*"
+                              RowSpacing="5"
+                              ColumnSpacing="5">
+
+                            <Frame Grid.Row="1"
+                                   Grid.Column="1"
+                                   BackgroundColor="#dc493c"
+                                   CornerRadius="0"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Text="Emergencies"
+                                   FontAttributes="Bold"
+                                   FontSize="Subtitle"/>
+
+                            <Frame Grid.Row="2"
+                                   Grid.Column="1"
+                                   BackgroundColor="#04a464"
+                                   CornerRadius="0"/>
+                            <Label Grid.Row="2"
+                                   Grid.Column="2"
+                                   VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Text="Responded"
+                                   FontAttributes="Bold"
+                                   FontSize="Subtitle"/>
+
+                            <Frame Grid.Row="3"
+                                   Grid.Column="1"
+                                   BackgroundColor="#CC00a2f2"
+                                   CornerRadius="0"/>
+                            <Label Grid.Row="3"
+                                   Grid.Column="2"
+                                   VerticalTextAlignment="Center"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Text="Responded by me"
+                                   FontAttributes="Bold"
+                                   FontSize="Subtitle"/>
+
+                        </Grid>
+                    </Grid>
+
+                    <Frame Grid.Row="2"
+                           BackgroundColor="Black"
+                           CornerRadius="0"
+                           BorderColor="Black"
+                           VerticalOptions="Fill">
+
+                    </Frame>
+                </Grid>
+            </Frame>
+
+            <Frame Grid.Column="3"
+                   Grid.ColumnSpan="2"
+                   BackgroundColor="#dc493c"
+                   BorderColor="#dc493c"
+                   Padding="0"
+                   x:Name="EmergencyFrame"
+                   IsVisible="True"
+                   IsEnabled="True">
+
+                <CollectionView BackgroundColor="Transparent"
+                                ItemsSource="{Binding Emergencies}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:BasicEventDisplayModel">
+
+                            <Frame BackgroundColor="LightGray"
+                                   Padding="3"
+                                   Margin="4">
+
+                                <Grid ColumnDefinitions="*,auto,auto">
+
+                                    <Grid Grid.Column="0"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding EventTitle}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventDescription}"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Column="1"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding DateCreated}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventType}"/>
+
+                                    </Grid>
+
+                                    <Button Text="Send help"
+                                            Grid.Column="2"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AuthorizedPersonelMainPageViewModel}}, Path= RespondToEmergencyEventCommand}"
+                                            CommandParameter="{Binding .}"
+                                            IsEnabled="{Binding Responded, Converter={StaticResource InverseBooleanConverter}}"/>
+                                    
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <Frame Grid.Column="3"
+                   Grid.ColumnSpan="2"
+                   BackgroundColor="#04a464"
+                   BorderColor="#04a464"
+                   Padding="0"
+                   x:Name="RespondFrame"
+                   IsVisible="False"
+                   IsEnabled="False">
+
+                <CollectionView BackgroundColor="Transparent"
+                                ItemsSource="{Binding EmergenciesResponded}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:BasicEventDisplayModel">
+
+                            <Frame BackgroundColor="LightGray"
+                                   Padding="3"
+                                   Margin="4">
+
+                                <Grid ColumnDefinitions="*,auto,auto">
+
+                                    <Grid Grid.Column="0"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding EventTitle}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventDescription}"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Column="1"
+                                          RowDefinitions="*,*">
+
+                                        <Label Grid.Row="0"
+                                           Text="{Binding DateCreated}"/>
+
+                                        <Label Grid.Row="1"
+                                           Text="{Binding EventType}"/>
+
+                                    </Grid>
+
+                                    <CheckBox Grid.Column="2"
+                                              IsChecked="{Binding Responded}"
+                                              IsEnabled="{Binding Responded, Converter={StaticResource InverseBooleanConverter}}"/>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </Grid>
+    </Grid>
 </ContentPage>

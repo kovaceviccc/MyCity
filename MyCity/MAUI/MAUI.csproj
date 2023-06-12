@@ -28,6 +28,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<DefaultLanguage>en</DefaultLanguage>
+		<UserSecretsId>13176bff-e33f-49dc-80ab-b1d55b5f192e</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android33.0|AnyCPU'">
@@ -101,6 +102,9 @@
 		<PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
 		<PackageReference Include="LocalizationResourceManager.Maui" Version="1.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.59" />
 		<PackageReference Include="Microsoft.Maui.Maps" Version="7.0.59" />

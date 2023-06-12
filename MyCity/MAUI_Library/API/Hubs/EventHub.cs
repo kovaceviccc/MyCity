@@ -2,22 +2,28 @@
 using MAUI_Library.API.Interfaces;
 using MAUI_Library.Helpers;
 using MAUI_Library.Models.OutgoingDto;
+using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Configuration;
+
 namespace MAUI_Library.API.Hubs;
 
 public class EventHub : IEventHub
 {
     private readonly HubConnection _connection;
     private readonly IApiHelper _apiHelper;
+    private readonly IConfiguration _configuration;
 
     public HubConnection Connection { get { return _connection; } }
 
-    public EventHub(IApiHelper apiHelper)
+    public EventHub(IApiHelper apiHelper,
+                    IConfiguration configuration)
     {
         _apiHelper = apiHelper;
+        _configuration = configuration;
         try
         {
-            string url;
+            string url; //= _configuration.GetConnectionString("HubConnectionString");
 
 #if ANDROID
             url = "https://10.0.2.2:7266/hubs/event";
@@ -29,10 +35,13 @@ public class EventHub : IEventHub
             _connection = new HubConnectionBuilder()
                 .WithUrl(url, options =>
                 {
+
                     //options.SkipNegotiation = true;
                     //options.Transports = HttpTransportType.WebSockets;
+
 #if ANDROID
-                    options.HttpMessageHandlerFactory = _ => new HttpsClientHandlerService().GetPlatformMessageHandler();
+                     options.HttpMessageHandlerFactory = _ => new HttpsClientHandlerService().GetPlatformMessageHandler();
+
 #endif
 
                     options.AccessTokenProvider = async () =>
@@ -51,14 +60,14 @@ public class EventHub : IEventHub
                 })
                 .WithAutomaticReconnect()
                 .Build();
-            //_connection.Closed += async (error) =>
-            //{
-            //    await _connection.StartAsync();
-            //};
+            _connection.Closed += async (error) =>
+            {
+                await _connection.StartAsync();
+            };
         }
         catch (Exception ex)
         {
-            string pera = ex.Message;
+            string error = ex.Message;
             //TODO: HANDLE ERROR
         }
     }

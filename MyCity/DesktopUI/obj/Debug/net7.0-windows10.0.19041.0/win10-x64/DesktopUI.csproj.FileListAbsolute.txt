@@ -14,6 +14,8 @@ C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Client.Core.dll
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Common.dll
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Caching.Abstractions.dll
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Caching.Memory.dll
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.dll
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.Extensions.DependencyInjection.dll
@@ -307,6 +309,11 @@ C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-150.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-200.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\appiconWideTile.scale-400.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-100.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-125.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-150.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-200.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\check_solid.scale-400.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-100.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-125.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\danger.scale-150.png
@@ -332,6 +339,12 @@ C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-150.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-200.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\house_fire_solid.scale-400.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-100.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-125.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-150.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-200.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-400.png
+C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\unauthorized.scale-100.jpg
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-100.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-125.png
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\users.scale-150.png
@@ -364,9 +377,3 @@ C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-100.png
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-125.png
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-150.png
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-200.png
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\logout1.scale-400.png
-C:\ProjekatSW\MyCity-GitHub\MyCity\MyCity\DesktopUI\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\r\unauthorized.scale-100.jpg

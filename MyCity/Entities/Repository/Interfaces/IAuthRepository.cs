@@ -17,4 +17,6 @@ public interface IAuthRepository
     Task<IEnumerable<BasicRoleModel>> GetAllRoles();
     Task<IEnumerable<BasicRoleModel>> GetAllRequredRoles(string userId);
     Task<(bool, string)> SubmitRoleRequest(string roleId, string userId);
+    Task<IEnumerable<RoleRequestModel>> GetAllRoleRequests();
+    Task<bool> RespondToRoleRequest(string requestId, string userId, bool approved);
 }

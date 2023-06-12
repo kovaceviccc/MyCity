@@ -16,10 +16,10 @@ public partial class LoginPageViewModel : ObservableObject
 {
 
     [ObservableProperty]
-    private string email = "mihajlo@elfak.rs"; //string.Empty;
+    private string email = "danijelakovacevic675@gmail.com"; //string.Empty;
 
     [ObservableProperty]
-    private string password = "milemile"; //string.Empty;
+    private string password = "Danijela675_"; //string.Empty;
 
     [ObservableProperty]
     private string emailLabel = string.Empty;

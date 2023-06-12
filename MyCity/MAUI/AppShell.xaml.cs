@@ -14,6 +14,7 @@ public partial class AppShell : Shell
                     AppShellViewModel vm,
                     LoginPage loginPage,
                     AccountPage accountPage,
+                    IServiceProvider serviceProvider,
                     IEventHub eventHub)
     {
         BindingContext = vm;
@@ -21,6 +22,8 @@ public partial class AppShell : Shell
         _logOfButton = button;
         UserSessionManager.LogOfButton = _logOfButton;
         UserSessionManager._eventHub = eventHub;
+        UserSessionManager.LoginPage = LoginPage;
+        UserSessionManager.AccountPage = AccountPage;
 
         Routing.RegisterRoute(nameof(EventDetailsPage), typeof(EventDetailsPage));
     }

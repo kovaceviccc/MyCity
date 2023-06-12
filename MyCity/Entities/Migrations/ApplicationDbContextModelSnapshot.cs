@@ -101,6 +101,36 @@ namespace Entities.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("Entities.DbSet.EventRespond", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("EventResponds");
+                });
+
             modelBuilder.Entity("Entities.DbSet.Like", b =>
                 {
                     b.Property<string>("Id")
@@ -464,6 +494,21 @@ namespace Entities.Migrations
                         .HasForeignKey("PublisherId");
 
                     b.Navigation("Publisher");
+                });
+
+            modelBuilder.Entity("Entities.DbSet.EventRespond", b =>
+                {
+                    b.HasOne("Entities.DbSet.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("Entities.DbSet.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entities.DbSet.Like", b =>

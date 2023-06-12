@@ -9,7 +9,11 @@ namespace MAUI_Library.Models.Incoming;
 
 public class BasicEventModel
 {
-    public string Id { get; set; }
-    public EventTypeEnum EventType{ get; set; }
-    public bool Responded { get; set; }
+    public required string Id { get; set; }
+    public required EventTypeEnum EventType { get; set; }
+    public required DateTime DateCreated { get; set; }
+    public required string EventTitle { get; set; }
+    public required string EventDescription { get; set; }
+    public required bool Responded { get; set; }
+    //public PersonelModel PersonelResponded { get; set; }
 }

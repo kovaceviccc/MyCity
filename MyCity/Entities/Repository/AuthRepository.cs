@@ -6,6 +6,7 @@ using Entities.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Runtime.InteropServices;
@@ -388,6 +389,66 @@ public class AuthRepository : IAuthRepository
             string error = ex.Message;
             //log error
             return (false, error);
+        }
+    }
+
+    public async Task<IEnumerable<RoleRequestModel>> GetAllRoleRequests()
+    {
+        try
+        {
+            var result = await _context.PermissionRequests
+                                       .Where(x => x.Archived == false && x.Responded == false)
+                                       .Include(x => x.User)
+                                       .Include(x => x.Role)
+                                       .Select(x => new RoleRequestModel
+                                       {
+                                           Id = x.Id,
+                                           RoleName = x.Role.Name!,
+                                           DateCreated = x.DateCreated,
+                                           User = new BasicUserModel
+                                           {
+                                               Id = x.User.Id,
+                                               UserName = x.User.UserName!,
+                                               FirstName = x.User.FirstName,
+                                               LastName = x.User.LastName,
+                                               Email = x.User.Email!
+                                           }
+                                       }).ToListAsync();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            return Enumerable.Empty<RoleRequestModel>();
+        }
+    }
+
+    public async Task<bool> RespondToRoleRequest(string requestId, string userId, bool approved)
+    {
+        try
+        { 
+
+            var request = await _context.PermissionRequests
+                                        .Include(x => x.User)
+                                        .Include(x=> x.Role)
+                                        .Where(x => x.Id == requestId && x.User.Id == userId && x.Responded ==false)
+                                        .FirstOrDefaultAsync();
+
+            if (request is null) return false;
+
+            request.Responded = true;
+            request.Approved = approved;
+
+            await _userManager.AddToRoleAsync(request.User, request.Role.Name!);
+
+            _context.PermissionRequests.Update(request);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            return false;
         }
     }
 }

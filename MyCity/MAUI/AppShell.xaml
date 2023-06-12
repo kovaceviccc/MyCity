@@ -32,7 +32,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Account" FlyoutItemIsVisible="False" Icon="account1.svg">
+    <FlyoutItem Title="Account" FlyoutItemIsVisible="False" Icon="account1.svg"
+                x:Name="AccountPage">
         <Tab>
             <ShellContent Title="Account" ContentTemplate="{DataTemplate view:AccountPage}"/>
         </Tab>
@@ -44,7 +45,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Login" Icon="login1.svg">
+    <FlyoutItem Title="Login" Icon="login1.svg"
+                x:Name="LoginPage">
         <Tab>
             <ShellContent Title="Login" ContentTemplate="{DataTemplate view:LoginPage}"/>
         </Tab>

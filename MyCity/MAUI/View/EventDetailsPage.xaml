@@ -120,7 +120,7 @@
             </Grid>
         </Frame>
 
-        <Line BackgroundColor="Transparent" 
+        <Line BackgroundColor="LightGray" 
               Grid.Row="1"
               StrokeThickness="0.4"/>
         

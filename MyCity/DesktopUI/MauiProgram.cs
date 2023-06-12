@@ -7,7 +7,9 @@ using MAUI_Library.API.Hubs;
 using MAUI_Library.API.Hubs.Interfaces;
 using MAUI_Library.API.Interfaces;
 using MAUI_Library.Models;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace DesktopUI
 {
@@ -23,6 +25,34 @@ namespace DesktopUI
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+#if WINDOWS
+        builder.ConfigureLifecycleEvents(events =>
+        {
+            
+            events.AddWindows(windowsLifecycleBuilder =>
+            {
+                windowsLifecycleBuilder.OnWindowCreated(window =>
+                {
+                    window.ExtendsContentIntoTitleBar = true;
+                    var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                    var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
+                    var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+                    switch (appWindow.Presenter)
+                    {
+                        case Microsoft.UI.Windowing.OverlappedPresenter overlappedPresenter:
+                            overlappedPresenter.SetBorderAndTitleBar(true, true);
+                            overlappedPresenter.IsResizable = false;
+                            overlappedPresenter.Maximize();
+                            break;
+                    }
+                });
+            });
+        });
+#endif
+
+            //cache
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 
             //application pages
 
