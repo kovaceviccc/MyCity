@@ -72,7 +72,7 @@
         </HorizontalStackLayout>
 
         <HorizontalStackLayout HorizontalOptions="StartAndExpand" >
-            <Button Text="Password"
+            <Button Text="Change password"
                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray100},Dark={StaticResource Gray100}}"
                    CornerRadius="10"
                    TextColor="{AppThemeBinding Light={StaticResource Black},Dark={StaticResource White}}"
@@ -89,21 +89,19 @@
         <VerticalStackLayout Spacing="10" Padding="5"
                              x:Name="MyStackLayout"
                              IsVisible="False">
-            <Entry
-                    Text="{Binding OldPassword}"
-                    Placeholder="Old password" 
-                    TextChanged="OldPasswordEntry_TextChanged"
-                    />
-            <Entry
-                    Text="{Binding NewPassword}"
-                    Placeholder="New password"
-                    TextChanged="NewPasswordEntry_TextChanged"
-                    />
+            
+            <Entry IsPassword="True"
+                   Text="{Binding OldPassword}"
+                   Placeholder="Old password" 
+                   TextChanged="OldPasswordEntry_TextChanged"/>
+            
+            <Entry IsPassword="True"
+                   Text="{Binding NewPassword}"
+                   Placeholder="New password"
+                   TextChanged="NewPasswordEntry_TextChanged"/>
 
             <Button Text="Change"
-                    Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding IsButtonEnabled}"
-                    
-                    />
+                    Command="{Binding ChangePasswordCommand}" IsEnabled="{Binding IsButtonEnabled}"/>
         </VerticalStackLayout>
 
     </VerticalStackLayout>

@@ -10,6 +10,8 @@ public interface IEventHub
     Task<bool> AddEvent(EventDto eventDto);
     Task<bool> LikeEvent(string eventId);
     Task<bool> CommentEvent(CommentDto commentDto);
+    Task<bool> DeleteEvent(string eventId);
+    Task<bool> RespondToEventAsync(string eventId);
     Task<bool> ConnectAsync();
     Task<bool> DisconnectAsync();
 }

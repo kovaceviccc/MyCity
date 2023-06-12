@@ -32,7 +32,7 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Account" FlyoutItemIsVisible="False" Icon="account1.svg"
+    <FlyoutItem Title="Account" FlyoutItemIsVisible="True" Icon="account1.svg"
                 x:Name="AccountPage">
         <Tab>
             <ShellContent Title="Account" ContentTemplate="{DataTemplate view:AccountPage}"/>

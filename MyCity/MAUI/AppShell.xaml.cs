@@ -35,6 +35,7 @@ public partial class AppShell : Shell
 
     private async void OnAppearingAsync(object sender, EventArgs e)
     {
+        Shell.Current.Items.Remove(AccountPage);
         if (BindingContext is null) return;
 
         await ((AppShellViewModel)BindingContext).OnAppearingAsync();

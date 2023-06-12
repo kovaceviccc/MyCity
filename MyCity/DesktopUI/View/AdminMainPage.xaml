@@ -6,7 +6,8 @@
              xmlns:converter="clr-namespace:MAUI_Library.Helpers;assembly=MAUI_Library"
              x:Class="DesktopUI.View.AdminMainPage"
              x:DataType="viewmodel:AdminMainPageViewModel"
-             Title="Dashboard">
+             Title="Dashboard"
+             BackgroundImageSource="unauthorized.jpg">
 
     <ContentPage.Resources>
         <ResourceDictionary>

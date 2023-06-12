@@ -406,6 +406,21 @@ public partial class MainPageViewModel : ObservableObject
         PinClicked = true;
     }
 
+    private async Task EventRespondedAsync(string eventId, string responderId)
+    {
+        await MainThread.InvokeOnMainThreadAsync(async () =>
+        {
+            foreach (var pin in AllPins)
+            {
+                if (pin.Id == eventId && pin.PublisherId == await UserSessionManager.GetUserId())
+                {
+                    await Shell.Current.DisplayAlert($"{pin.Label}", "One of our operators just confirmed help is on the way. Stay put!", "Ok");
+                    return;
+                }
+            }
+        });
+    }
+
     public MainPageViewModel(EventPage eventPage,
                           IEventEndpoint eventEndpoint,
                           IEventHub eventHub,
@@ -423,5 +438,6 @@ public partial class MainPageViewModel : ObservableObject
 
         //signalR part
         _eventHub.Connection.On<EventModel>("EventRecived", EventRecivedAsync);
+        _eventHub.Connection.On<string, string>("EventResponded", EventRespondedAsync);
     }
 }

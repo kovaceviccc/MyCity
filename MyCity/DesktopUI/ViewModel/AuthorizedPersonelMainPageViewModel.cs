@@ -2,11 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using DesktopUI.Extensions;
 using DesktopUI.Models;
+using MAUI_Library.API.Hubs.Interfaces;
 using MAUI_Library.API.Interfaces;
 using MAUI_Library.Models.Incoming;
 using Microsoft.Extensions.Caching.Memory;
 using System.Collections.ObjectModel;
-using System.Diagnostics.Contracts;
+using Microsoft.AspNetCore.SignalR.Client;
+using MAUI_Library.Helpers;
 
 namespace DesktopUI.ViewModel;
 
@@ -43,6 +45,7 @@ public partial class AuthorizedPersonelMainPageViewModel : ObservableObject
 
     private readonly IAdminEndpoint _adminEndpoint;
     private readonly IMemoryCache _memoryCache;
+    private readonly IEventHub _eventHub;
 
     public async Task OnAppearingAsync()
     {
@@ -72,7 +75,7 @@ public partial class AuthorizedPersonelMainPageViewModel : ObservableObject
     {
         var result = (await GetAllEvents()).Map();
 
-        Emergencies = new(result);
+        Emergencies = new(result.OrderBy(x=>x.Responded));
 
         EmergenciesResponded = new(result.Where(x=> x.Responded == true));
 
@@ -93,11 +96,9 @@ public partial class AuthorizedPersonelMainPageViewModel : ObservableObject
 
         try
         {
-            var res = await _adminEndpoint.RespondToEmergencyEvent(e.Id);
+            var res = await _eventHub.RespondToEventAsync(e.Id);
 
             if (!res) await Shell.Current.DisplayAlert("Error", "Error occured while processing request!\nPlease try again", "Ok");
-
-            await Shell.Current.DisplayAlert("Success!", "You confirmed that the help is on the way!\nThank you for your service", "Ok");
 
             _memoryCache.Remove("AllEvents");
             await GetRequiredData();
@@ -173,11 +174,36 @@ public partial class AuthorizedPersonelMainPageViewModel : ObservableObject
     {
         return (double)value / maxValue;
     }
+    
+    private async Task EventRespondedAsync(string eventId, string responderId)
+    {
+        await MainThread.InvokeOnMainThreadAsync(async () =>
+        {
+            foreach(var emergency in Emergencies)
+            {
+                if(emergency.Id == eventId)
+                {
+
+                    if(responderId == await UserSessionManager.GetUserId())
+                    {
+                        await Shell.Current.DisplayAlert("Success!", "You confirmed that the help is on the way!\nThank you for your service", "Ok");
+                    }
+                    _memoryCache.Remove("AllEvents");
+                    await GetRequiredData();
+                    return;
+                }
+            }
+        });
+    }
 
     public AuthorizedPersonelMainPageViewModel(IAdminEndpoint adminEndpoint,
-                                               IMemoryCache memoryCache)
+                                               IMemoryCache memoryCache,
+                                               IEventHub eventHub)
     {
         _adminEndpoint = adminEndpoint;
         _memoryCache = memoryCache;
+        _eventHub = eventHub;
+
+        _eventHub.Connection.On<string, string>("EventResponded", EventRespondedAsync);
     }
 }

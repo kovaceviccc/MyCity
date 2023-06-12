@@ -12,7 +12,6 @@ public class EventHub : IEventHub
 {
     private readonly HubConnection _connection;
     private readonly IApiHelper _apiHelper;
-    private readonly IConfiguration _configuration;
 
     public HubConnection Connection { get { return _connection; } }
 
@@ -20,7 +19,6 @@ public class EventHub : IEventHub
                     IConfiguration configuration)
     {
         _apiHelper = apiHelper;
-        _configuration = configuration;
         try
         {
             string url; //= _configuration.GetConnectionString("HubConnectionString");
@@ -71,6 +69,8 @@ public class EventHub : IEventHub
             //TODO: HANDLE ERROR
         }
     }
+
+
 
 
     public async Task<bool> ConnectAsync()
@@ -149,6 +149,27 @@ public class EventHub : IEventHub
         try
         {
             await _connection.InvokeAsync("LikeEvent", eventId);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            string error = ex.Message;
+            return false;
+        }
+    }
+
+    public Task<bool> DeleteEvent(string eventId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> RespondToEventAsync(string eventId)
+    {
+        if (!await ConnectAsync()) return false;
+
+        try
+        {
+            await _connection.InvokeAsync("RespondToEvent", eventId);
             return true;
         }
         catch (Exception ex)

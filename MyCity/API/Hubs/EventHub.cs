@@ -1,5 +1,6 @@
 ﻿using API.Extensions;
 using API.Models.DTOs;
+using Entities.Domain.Enums;
 using Entities.Repository.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -156,6 +157,28 @@ public class EventHub : Hub
             string error = ex.Message;
             string inner = ex.InnerException!.Message;
             //log error
+        }
+    }
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "AuthorizedPersonel")]
+    public async Task RespondToEvent(string eventId)
+    {
+        try
+        {
+            string userId = Context.GetHttpContext()!.User.Claims.FirstOrDefault(c => c.Type == "Id")?.Value!;
+
+            if (userId is null || eventId is null) return;
+
+            var result = await _eventRepository.RespondToEmergencyEvent(eventId, userId);
+
+            if (!result) return;
+
+            await Clients.All.SendAsync("EventResponded", eventId, userId);
+        }
+        catch (Exception)
+        {
+
+            throw;
         }
     }
 

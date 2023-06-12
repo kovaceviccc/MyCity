@@ -394,7 +394,8 @@
                                             Grid.Column="2"
                                             Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AuthorizedPersonelMainPageViewModel}}, Path= RespondToEmergencyEventCommand}"
                                             CommandParameter="{Binding .}"
-                                            IsEnabled="{Binding Responded, Converter={StaticResource InverseBooleanConverter}}"/>
+                                            IsEnabled="{Binding Responded, Converter={StaticResource InverseBooleanConverter}}"
+                                            IsVisible="{Binding Responded, Converter={StaticResource InverseBooleanConverter}}"/>
                                     
                                 </Grid>
                             </Frame>

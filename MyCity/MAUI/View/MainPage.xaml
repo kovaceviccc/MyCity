@@ -52,13 +52,6 @@
                     WidthRequest="130">
 
             </Button>
-            <Button Text="Button 2"
-                    CornerRadius="10"
-                    BackgroundColor="#BB778899"
-                    TextColor="Black"
-                    FontAttributes="Bold">
-
-            </Button>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

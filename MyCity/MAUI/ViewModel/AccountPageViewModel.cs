@@ -52,7 +52,9 @@ public partial class AccountPageViewModel : ObservableObject
 
         if (!result) return;
 
-        var res = !(await Shell.Current.DisplayAlert("", "Please login to add events", "Cancel", "Ok"));
+        await Shell.Current.DisplayAlert("Success", "Password changed succesfully" ,"Ok");
+        OldPassword = string.Empty;
+        NewPassword = string.Empty;
     }
     
 
